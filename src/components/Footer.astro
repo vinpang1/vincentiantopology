@@ -1,0 +1,12 @@
+---
+import { siteConfig } from '../site.config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p>© {year} {siteConfig.nameZh}</p>
+    <p>{siteConfig.nameEn}</p>
+  </div>
+</footer>

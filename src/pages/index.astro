@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../site.config';
+---
+
+<BaseLayout>
+  <h1>{siteConfig.nameZh}</h1>
+  <p class="page__subtitle">{siteConfig.nameEn}</p>
+  <p class="page__lead">{siteConfig.taglineZh}</p>
+  <p>{siteConfig.taglineEn}</p>
+  <p class="empty-state">
+    本站架構已就緒，文章內容將於後續加入。請從上方導覽進入各專區。
+  </p>
+</BaseLayout>
