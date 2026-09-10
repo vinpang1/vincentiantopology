@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sections } from '../../site.config';
+import {
+  getPublishedIntro,
+  formatDate,
+  slugFromId,
+} from '../../lib/content';
+
+const articles = await getPublishedIntro();
+---
+
+<BaseLayout title={sections.intro.labelZh}>
+  <header class="page-header">
+    <p class="page-header__eyebrow">{sections.intro.labelEn}</p>
+    <h1 class="page-header__title">{sections.intro.labelZh}</h1>
+    <p class="page-header__desc">歡迎來到這間公開書房。</p>
+  </header>
+
+  <div class="prose">
+    <p>
+      書架上的書越來越多，但面對現實問題時，你說得出屬於自己的判斷嗎？
+    </p>
+    <p>
+      <strong>萬脈同構｜文森思維</strong>，是一份專注於「讀書與寫作」的思想通訊。
+    </p>
+    <p>
+      很多人以為自己說不出觀點是因為讀得不夠；事實上，讀書只是存材料，寫作才是接電路。如果沒有具體的觀察點逼自己落筆，讀再多也只是別人的蠟印。
+    </p>
+    <p>在這裡，我們劃清一道工序界線：</p>
+    <ul>
+      <li>
+        <strong>作，留給自己</strong>：觀察點、取捨判斷與署名責任，絕不外判。
+      </li>
+      <li>
+        <strong>寫，交給工具</strong>：段落潤飾與排版整理，把力氣留給真正的思考。
+      </li>
+    </ul>
+    <p>
+      有了想法之後，我們走通三步：引證出處、消化重排、定案觀點。
+    </p>
+    <p>
+      這份刊物的核心交付只有一件事——「<strong>思想對碰</strong>」：用當下的問題，撞擊讀過的經典論著。這裡沒有浮濫的書摘，也不產出未經思考的 AI 空話，只有接通電路後、敢於負責的可修正觀點。
+    </p>
+    <p>入門手冊見下方四篇：</p>
+  </div>
+
+  <ul class="article-list">
+    {
+      articles.map((entry) => (
+        <li class="article-list__item">
+          <a
+            class="article-list__link"
+            href={`/intro/${slugFromId(entry.id)}`}
+          >
+            <span class="article-list__meta">
+              0-{entry.data.order} · {formatDate(entry.data.published)}
+            </span>
+            <h2 class="article-list__title">{entry.data.title}</h2>
+            {entry.data.description && (
+              <p class="card__desc">{entry.data.description}</p>
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

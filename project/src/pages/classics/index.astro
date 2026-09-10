@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sections } from '../../site.config';
+import {
+  getPublishedClassics,
+  formatDate,
+  slugFromId,
+} from '../../lib/content';
+
+const articles = await getPublishedClassics();
+---
+
+<BaseLayout title={sections.classics.labelZh}>
+  <header class="page-header">
+    <p class="page-header__eyebrow">{sections.classics.labelEn}</p>
+    <h1 class="page-header__title">{sections.classics.labelZh}</h1>
+    <p class="page-header__desc">慢讀經典，長解讀。</p>
+  </header>
+
+  <ul class="article-list">
+    {
+      articles.map((entry) => (
+        <li class="article-list__item">
+          <a
+            class="article-list__link"
+            href={`/classics/${slugFromId(entry.id)}`}
+          >
+            <span class="article-list__meta">
+              {formatDate(entry.data.published)}
+            </span>
+            <h2 class="article-list__title">{entry.data.title}</h2>
+            {entry.data.description && (
+              <p class="card__desc">{entry.data.description}</p>
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+description: 改文章前須讀 craft 寫作指引
+globs: articles/**/*.md,src/content/**/*.md
+alwaysApply: false
+---
+
+# 文章改稿
+
+改 `articles/` 或 `src/content/` 內任何文章前：
+
+1. 讀 [`articles/craft/README.md`](../../articles/craft/README.md) §預設守則
+2. **用戶有當次特別要求** → 跟用戶；**否則** 跟 craft 預設
+3. 讀 [`articles/craft/_base.md`](../../articles/craft/_base.md)
+4. 讀 [`citations.md`](../../articles/craft/citations.md)、[`voice.md`](../../articles/craft/voice.md)
+5. 按欄目讀對應範本（見 craft README 路由表）；`topics` 另讀 [`series-cycle.md`](../../articles/craft/series-cycle.md)
+6. 技術欄位以 [`design/IA.md`](../../design/IA.md) 為準
+
+唔偏離觀測點與觀點標準，除非用戶明講例外。

@@ -1,0 +1,21 @@
+# macOS / editor
+.DS_Store
+.idea/
+
+# Environment (anywhere in repo)
+.env
+.env.*
+!.env.example
+
+# Astro site (project/)
+project/node_modules/
+project/dist/
+project/.astro/
+project/npm-debug.log*
+project/yarn-debug.log*
+project/yarn-error.log*
+project/pnpm-debug.log*
+
+# Sensitive project zones
+project/finance/private/
+project/legal/private/

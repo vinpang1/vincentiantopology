@@ -1,0 +1,76 @@
+---
+import { navItems, site } from '../site.config';
+
+const currentPath = Astro.url.pathname;
+const isEn = currentPath === '/en' || currentPath.startsWith('/en/');
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href={isEn ? '/en' : '/'}>
+      <img
+        class="site-logo__img"
+        src={site.logo}
+        alt={site.logoAlt}
+        width="96"
+        height="38"
+        decoding="async"
+      />
+    </a>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      data-nav-toggle
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="開啟選單"
+    >
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" data-site-nav aria-label="主要導航">
+      <ul class="site-nav__list">
+        {
+          navItems.map((item) => (
+            <li>
+              <span class="site-nav__item">
+                <a
+                  class="site-nav__link"
+                  href={isEn ? `/en${item.href}` : item.href}
+                  aria-current={isActive(isEn ? `/en${item.href}` : item.href) ? 'page' : undefined}
+                >
+                  {isEn ? item.labelEn : item.labelZh}
+                </a>
+              </span>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            class="site-nav__link site-nav__link--lang"
+            href={isEn ? '/' : '/en'}
+            aria-label={isEn ? '切換至中文' : 'Switch to English'}
+          >
+            {isEn ? '中文' : 'EN'}
+          </a>
+        </li>
+        <li>
+          <a
+            class="site-nav__link site-nav__link--cta"
+            href={site.subscribeUrl}
+            target={site.subscribeUrl.startsWith('http') ? '_blank' : undefined}
+            rel={site.subscribeUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {isEn ? 'Subscribe (link)' : site.subscribeLabel}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

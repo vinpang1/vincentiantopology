@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { sections } from '../../../site.config';
+import {
+  getPublishedIntro,
+  formatDate,
+  slugFromId,
+} from '../../../lib/content';
+
+const articles = await getPublishedIntro();
+---
+
+<BaseLayout lang="en" title={sections.intro.labelEn}>
+  <header class="page-header">
+    <p class="page-header__eyebrow">{sections.intro.labelEn}</p>
+    <h1 class="page-header__title">{sections.intro.labelEn}</h1>
+    <p class="page-header__desc">Welcome to Vincentian Topology.</p>
+  </header>
+
+  <div class="prose">
+    <p>
+      We read all the time, yet when it comes to speaking up or putting words on
+      the page, the mind often goes blank.
+    </p>
+    <p>
+      Read a lot but can't say what you think? That's not a personal failing. We
+      get used to storing material—and forget to connect the circuit.
+    </p>
+    <p>
+      At Vincentian Topology, we don't only share views. We also share how we
+      work with information—the same process behind every piece on this site. We
+      call it <em>ideas in collision</em>.
+    </p>
+
+    <p>Three simple ideas are enough:</p>
+
+    <h3>1. Drop the weight: you think; AI polishes</h3>
+    <p>
+      Many people fear writing because they think they're "not good with words."
+      But writing has two parts:
+    </p>
+    <ul>
+      <li>
+        <strong>Thinking</strong>: finding material, asking questions, making
+        judgments. That's yours to keep.
+      </li>
+      <li>
+        <strong>Drafting</strong>: rhetoric, layout, polish. That's where tools
+        shine.
+      </li>
+    </ul>
+    <p>
+      Here, we hand polish to AI so you can focus on what matters:
+      <strong>your view</strong>. If you have something to say, AI can help you
+      say it clearly.
+    </p>
+
+    <h3>2. A simple process: from material to view</h3>
+    <p>
+      Once you have an idea, how do you make it stand? We skip heavy theory and
+      use three steps:
+    </p>
+    <ul>
+      <li><strong>Evidence</strong>: ground it in facts, not imagination.</li>
+      <li>
+        <strong>Digest</strong>: connect material to life; decide what to keep
+        and what to drop.
+      </li>
+      <li>
+        <strong>View</strong>: land on a judgment you're willing to sign your
+        name to.
+      </li>
+    </ul>
+    <p>That's the path from reading others to speaking for yourself.</p>
+
+    <h3>3. The goal: ideas in collision</h3>
+    <p>
+      <em>Ideas in collision</em> means bringing a question to the material until
+      a view of your own emerges.
+    </p>
+    <p>
+      It's not about winning an argument. It's about seeing how thought pulls
+      between two poles. We hope what you read here isn't only a conclusion—but
+      how that conclusion was reached.
+    </p>
+
+    <hr />
+
+    <h3>Ready to explore?</h3>
+    <p>
+      That's how Vincentian Topology works. Once you know the logic, you can start
+      here:
+    </p>
+    <ul>
+      <li>
+        👉 <strong><a href="/en/view">Vincentian View</a></strong>: a quick take
+        on what's happening now.
+      </li>
+      <li>
+        👉 <strong><a href="/en/topics">Special Topics</a></strong>: one theme,
+        explored in depth.
+      </li>
+      <li>
+        👉 <strong><a href="/en/classics">Classic Commentary</a></strong>: slow
+        reads on texts worth returning to.
+      </li>
+    </ul>
+
+    <p>Or read the full introductory series below:</p>
+  </div>
+
+  <ul class="article-list">
+    {
+      articles.map((entry) => (
+        <li class="article-list__item">
+          <a
+            class="article-list__link"
+            href={`/en/intro/${slugFromId(entry.id)}`}
+          >
+            <span class="article-list__meta">
+              0-{entry.data.order} · {formatDate(entry.data.published)}
+            </span>
+            <h2 class="article-list__title">{entry.data.title}</h2>
+            {entry.data.description && (
+              <p class="card__desc">{entry.data.description}</p>
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site, sections } from '../../site.config';
+
+const sectionNav = [
+  {
+    href: `/en${sections.intro.href}`,
+    title: sections.intro.labelEn,
+    desc: 'Welcome to Vincentian Topology.',
+  },
+  {
+    href: `/en${sections.view.href}`,
+    title: sections.view.labelEn,
+    desc: 'One judgment on something now',
+  },
+  {
+    href: `/en${sections.topics.href}`,
+    title: sections.topics.labelEn,
+    desc: 'One theme, many angles',
+  },
+  {
+    href: `/en${sections.classics.href}`,
+    title: sections.classics.labelEn,
+    desc: 'Long-form notes, slow reading',
+  },
+];
+---
+
+<BaseLayout lang="en" title="Home">
+  <h1 class="visually-hidden">{site.nameEn}</h1>
+
+  <nav class="section-nav" aria-label="Sections">
+    {
+      sectionNav.map((item) => (
+        <a class="section-nav__row" href={item.href}>
+          <span class="section-nav__title">{item.title}</span>
+          <span class="section-nav__desc">{item.desc}</span>
+        </a>
+      ))
+    }
+  </nav>
+</BaseLayout>

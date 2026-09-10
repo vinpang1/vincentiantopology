@@ -1,0 +1,188 @@
+萬脈同構｜文森思維（Vincentian Topology）
+網站設定／登入／相關資料備忘錄
+建立日期：2026-09-10
+（本檔唔包含任何密碼／API token；請自行妥善保管登入憑證。）
+
+================================================================================
+一、品牌與公開網址
+================================================================================
+
+中文站名：萬脈同構｜文森思維
+英文站名：All Things Are One | Vincentian Topology
+定位：公開閱讀網站；訂閱外連 Substack（站內唔收集 email）
+
+正式網址：
+  https://vincentiantopology.com
+  https://www.vincentiantopology.com
+  （apex 會 308 轉去 www；內容相同）
+
+Vercel 預設網址（備用）：
+  https://vincentiantopology.vercel.app
+
+================================================================================
+二、要登入／管理嘅帳戶一覽
+================================================================================
+
+1) GoDaddy（域名 + DNS + Domain Protection）
+   - 用途：域名註冊、DNS、域名保護
+   - 客戶編號（Customer #）：727535815
+   - 相關登入電郵常見：vinpangwork@gmail.com
+   - 網址：https://www.godaddy.com /
+
+2) Microsoft 365 電郵（跟域名一齊買）
+   - 電郵：vincent@vincentiantopology.com
+   - 網頁電郵入口（歷史記錄）：http://email.vincentiantopology.com
+   - 用途：品牌電郵（MX 指向 Outlook）
+
+3) Vercel（網站托管）
+   - 帳號／團隊 slug：vinpang1
+   - Team ID：team_U4PwrXdWtHViXCMIasYsbkaG
+   - 專案名：vincentiantopology
+   - Project ID：prj_uEmYj9EalIDxrJ18OFTjCCHEhe2R
+   - Dashboard：https://vercel.com/vinpang1/vincentiantopology
+   - Domains 設定：https://vercel.com/vinpang1/vincentiantopology/settings/domains
+   - 登入可用 GitHub（vinpang1）或電郵（視你帳號綁定）
+
+4) GitHub（原始碼）
+   - 帳號：vinpang1
+   - Repo：https://github.com/vinpang1/vincentiantopology
+   - 說明：架構為主；文章內容未正式上庫／上站
+
+5) Substack（訂閱／付費牆外連）
+   - Publication：https://vincentiantopology.substack.com
+   - 目前標題：Vincentian's Substack
+   - 作者顯示：Vincentian topology
+   - 開通歡迎信：2026-06-19 → vinpangwork@gmail.com（主旨 Welcome to Substack）
+   - 登入：https://substack.com （用開通嗰個 Google／電郵）
+
+6) Gmail（網站相關通知）
+   - vinpangwork@gmail.com（GoDaddy／Substack／域名驗證等）
+   - 另有：vinpang01@gmail.com（個人／Drive 等，未必係網站主帳）
+
+================================================================================
+三、域名與訂單資料（GoDaddy）
+================================================================================
+
+域名：vincentiantopology.com
+買入日：2026-06-14
+有效至：約 2027-06-14
+訂單號：4112279981
+客戶編號：727535815
+已購項目（歷史）：
+  - .com 域名
+  - Full Domain Protection
+  - Microsoft 365 Email Essentials（vincent@vincentiantopology.com）
+備註：
+  - 唔再用 GoDaddy Website Builder／lander 做網站
+  - 網站改由 Vercel 托管；GoDaddy 只保留域名 + 電郵 DNS
+
+================================================================================
+四、DNS 現況（GoDaddy 管理；切勿亂刪電郵記錄）
+================================================================================
+
+網站（已改，指向 Vercel）：
+  - A    @     → 76.76.21.21
+  - CNAME www  → cname.vercel-dns.com.
+
+電郵／Microsoft 365（必須保留）：
+  - MX   @     → 0 vincentiantopology-com.mail.protection.outlook.com.
+  - TXT  @     → NETORGFT20831042.onmicrosoft.com
+  - TXT  @     → v=spf1 include:secureserver.net -all
+  - CNAME autodiscover → autodiscover.outlook.com.
+  - CNAME lyncdiscover → webdir.online.lync.com.
+  - CNAME msoid        → clientconfig.microsoftonline-p.net.
+  - CNAME sip          → sipdir.online.lync.com.
+  - TXT  _dmarc        →（DMARC 設定；保留）
+
+其他常見（可保留）：
+  - CNAME email → email.secureserver.net.
+  - NS：ns69.domaincontrol.com / ns70.domaincontrol.com（GoDaddy nameservers）
+
+Vercel Domains 狀態（2026-09-10 核對）：
+  - 自訂域名已加入專案
+  - 現場實際可開：https://www.vincentiantopology.com （標題「萬脈同構｜文森思維」）
+  - Dashboard 或仍顯示黃色「DNS Change Recommended」（建議優化，唔等於站壞咗）
+
+================================================================================
+五、網站技術與部署
+================================================================================
+
+技術：Astro 靜態站（簡單大眾網頁結構；唔用虛實／Spin Map 資料庫做管理）
+Build：npm run build
+Output：dist/
+Hosting：Vercel Production
+
+GitHub：
+  - https://github.com/vinpang1/vincentiantopology
+  - 早期 PR #1（架構 scaffold）已 merge 入 main
+
+Vercel 部署注意：
+  - 曾因 Git 匯入權限／payload 問題，用過直接上傳源碼部署
+  - 之後若要持續自動部署：喺 Vercel 連接 GitHub repo vinpang1/vincentiantopology，並確保 GitHub App 有權限存取呢個 repo
+
+本機舊工作區（Mac；內容較完整／含文章草稿流程，同 GitHub 公開架構未必完全同步）：
+  - 計劃摘要：~/Desktop/Vincentian Topology_對話總結與下一步優化.txt
+  - 專案：~/Documents/Dev/vincentian-topology/project
+  - 本地預覽捷徑：Desktop「萬脈同構｜本地預覽.command」（埠 4321）
+
+================================================================================
+六、訂閱掣（站 ↔ Substack）
+================================================================================
+
+設計：導覽「訂閱」外連 Substack；站內唔做 email 收集。
+
+而家狀態：
+  - 站上 subscribeUrl 可能仍係 #subscribe（待更新）
+  - 目標連結：https://vincentiantopology.substack.com
+
+更新方式（擇一）：
+  A. 改 repo 入面 site.config／等同設定，再 redeploy Vercel
+  B. 叫助理幫你改並部署
+
+可選進階（稍後）：
+  - Substack 自訂域名，例如 newsletter.vincentiantopology.com（要另加 DNS；唔影響而家電郵）
+
+================================================================================
+七、欄目架構（站上）
+================================================================================
+
+/          首頁
+/intro     關於我們
+/view      文森世界
+/topics    專題探討
+/classics  經典註解
+
+內容策略：架構已上線；文章可後續加入。本地舊稿 intro 0-1～0-4 曾 ready；GitHub／Vercel 現網可能仍係空殼／佔位。
+
+================================================================================
+八、快速連結清單
+================================================================================
+
+網站：https://www.vincentiantopology.com
+Vercel 專案：https://vercel.com/vinpang1/vincentiantopology
+Vercel Domains：https://vercel.com/vinpang1/vincentiantopology/settings/domains
+GitHub：https://github.com/vinpang1/vincentiantopology
+Substack：https://vincentiantopology.substack.com
+GoDaddy：https://www.godaddy.com/
+Substack 登入：https://substack.com/
+
+================================================================================
+九、安全提醒
+================================================================================
+
+- 本備忘錄只記帳戶名、ID、網址、DNS；唔記密碼。
+- 唔好把 .env、token、私鑰 commit 上 GitHub。
+- 改 DNS 時只動網站 A／www CNAME；唔好刪 MX／autodiscover／電郵 TXT。
+- Domain Protection 改 DNS 或需 GoDaddy 電郵驗證碼（寄去 vinpangwork@gmail.com）。
+
+================================================================================
+十、待辦（截至 2026-09-10）
+================================================================================
+
+[ ] 確認 Substack 標題／簡介改成「萬脈同構｜文森思維」（可選）
+[ ] 把網站 subscribeUrl 改成 https://vincentiantopology.substack.com 並 redeploy
+[ ] （可選）Vercel 正式連接 GitHub 做 push-to-deploy
+[ ] （可選）處理 Vercel「DNS Change Recommended」建議值
+[ ] 之後再上文章內容
+
+— 完 —

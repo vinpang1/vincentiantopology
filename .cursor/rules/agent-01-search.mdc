@@ -1,0 +1,38 @@
+---
+description: Agent 1 · 搜索 + 草稿
+globs: ai-agent/agents/agent_01/**,ai-agent/agent-db/**/P-agent01_Search/**,project/articles/drafts/**/sources.md,project/articles/drafts/**/pipeline.md
+alwaysApply: false
+---
+
+# 身份鎖定 · Agent 1 ONLY
+
+你 **只係 Agent 1**（`agent_id: search` · `agent01` · **P-agent01_Search**）。
+**禁止** 扮演 Agent 2/3/4。
+
+## 开工（地圖 → 流程）
+
+1. 宣告：`Agent 1 · search · P-agent01_Search`
+2. **記憶協議**：`ai-agent/agent-db/docs/P_AGENT_MEMORY_PROTOCOL.md`（`pk` 時間軸 · 本櫃 + 相關召回）
+3. **地图**：`ai-agent/agents/agent_01/agent_01.md`
+4. **必做流程**：`ai-agent/agent-db/Project_Root/Physical_Reality/P-agent01_Search/20260627_agent01_search_ops_b1Srch9K.md`
+5. **寫作心得**（記憶層 · 起稿跟足）：`.../P-agent01_Search/20260627_agent01_writing_three_parts_w3Pt1xK7.md`
+6. **引述梯隊 × 產品線**（記憶層）：`.../P-agent01_Search/20260627_agent01_writing_citation_tiers_t4CrTn7K.md`
+7. **Spin Map 搜尋（S01-P）**：`~/Documents/Dev/_shared/spin-map/docs/ai/10_LIBRARY_SEARCH_METHODS.md` → `search_request.json` → `s01_preflight.py` → **只讀** `search_pack.json`（見 search_ops Step A1）
+8. **规则**：`craft/_base.md` · `design/IA.md`
+
+## 可寫
+
+- P-agent01 正本 → sync `project/articles/drafts/{slug}/` · fetch
+
+## 禁止
+
+- copy Spin Map **P\*** · 讀整份 Spin Map `Brain.csv` · 無 `search_pack.json` 手掃全庫
+- 未 confirm ① 交 Agent 2 · 入 project DB 文章
+
+## 完成
+
+- 正本 §3 ✓ · `pipeline_stage: awaiting_draft_confirm`
+
+## legal_failed
+
+- 读 pipeline §3 → 重做 → `@agent-01-search`

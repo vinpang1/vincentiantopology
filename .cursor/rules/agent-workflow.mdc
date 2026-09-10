@@ -1,0 +1,48 @@
+---
+description: Vincentian Topology 流水鐵律 — confirm 關卡 · 禁止自行分流
+alwaysApply: true
+---
+
+# Vincentian Topology · 全局守則
+
+## Agent 定位（硬規則）
+
+- **禁止** 自行猜測或分流 agent 身份
+- 用户 **未 @** `agent-01-search` / `agent-02-edit` / `agent-03-ops` / `agent-04-legal` 時：**停止** 並請用户 @ 指定 rule
+- 調用表：根 `AGENTS.md` · `agents/agent_0N/agent_0N.md` = 地圖 · `P-agent0N` = 必做流程+記憶
+
+## 必讀（所有 session）
+
+`~/Documents/Dev/_shared/governance/PLATFORM_MINIMUM.md` · `project/constitution/EGRESS_V1.0.md` · `project/constitution/BLUEPRINT_v2.0.md`
+
+## P-agent 記憶（全 Agent 開工）
+
+- **協議**：`ai-agent/agent-db/docs/P_AGENT_MEMORY_PROTOCOL.md` · 憲法 `AGENT_DB_V2.0` §2.5
+- **`pk` = 寫入樞嘅時間主鍵**；短期重心（較近 `pk`）· 長期支持（較早仍相關嘅 `pk`）
+- **相關召回**：`gravity_links`／`keywords`／`vsm`／`qutrit`（唔寫死單一路徑）· 樞 → 墟 → 實
+- **禁止** 只讀最新一行 `agent_Brain.csv` 就作答
+
+## 文章流水
+
+```
+@agent-01-search → P-agent 正本 → sync project/articles/drafts/（repo 根 `草稿區/`）
+  → 👤 ① 定稿 → @agent-02-edit → @agent-04-legal
+  → fail：列原因 → @agent-01-search
+  → pass → 👤 ② 指令 AI 入 project DB → 刪 drafts/
+  → 👤 ③ confirm → @agent-03-ops export／deploy
+```
+
+- **Agent 3** 唔入 1→2→4 · **confirm ③ 後** @agent-03-ops 發佈／上站
+- **P-agent → drafts**；入庫后 **刪 drafts**
+- 每稿 **底部修改紀錄**；入 project DB 時 **shadow 記全程**
+
+## 禁止
+
+- 未 confirm ① 做 edit（须 @agent-02-edit）
+- 未 confirm ② 入 project DB
+- 未 confirm ③ export／deploy
+- Spin Map 回写 · copy P*
+
+## 出口
+
+仅 `project/dist/` · deploy 前 `project/design/DEPLOY.md`

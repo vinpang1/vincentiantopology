@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sections } from '../../site.config';
+import { getTopicSeries, formatDate } from '../../lib/content';
+
+const seriesList = await getTopicSeries();
+---
+
+<BaseLayout title={sections.topics.labelZh}>
+  <header class="page-header">
+    <p class="page-header__eyebrow">{sections.topics.labelEn}</p>
+    <h1 class="page-header__title">{sections.topics.labelZh}</h1>
+    <p class="page-header__desc">
+      同一主題，多角度深讀。系列之間互相獨立。
+    </p>
+  </header>
+
+  {
+    seriesList.length === 0 ? (
+      <p class="placeholder-note">專題文章即將推出。</p>
+    ) : (
+      seriesList.map((series) => (
+        <section class="series-group">
+          <h2 class="series-group__title">{series.title}</h2>
+          <ul class="article-list">
+            {series.entries.map((entry) => (
+              <li class="article-list__item">
+                <a
+                  class="article-list__link"
+                  href={`/topics/${entry.data.series}/${entry.data.episode}`}
+                >
+                  <span class="article-list__meta">
+                    第 {entry.data.episode} 期 ·{' '}
+                    {formatDate(entry.data.published)}
+                  </span>
+                  <h3 class="article-list__title">{entry.data.title}</h3>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    )
+  }
+</BaseLayout>

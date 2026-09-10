@@ -1,0 +1,31 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { formatDate } from '../lib/content';
+
+interface Props {
+  title: string;
+  description?: string;
+  sectionLabel: string;
+  published: Date;
+  lang?: 'zh-Hant' | 'en';
+}
+
+const { title, description, sectionLabel, published, lang = 'zh-Hant' } =
+  Astro.props;
+---
+
+<BaseLayout title={title} description={description} narrow>
+  <article>
+    <header class="page-header">
+      <p class="page-header__eyebrow">{sectionLabel}</p>
+      <h1 class="page-header__title">{title}</h1>
+    </header>
+    <div class="article-meta">
+      <span class="article-meta__section">{sectionLabel}</span>
+      <time datetime={published.toISOString()}>{formatDate(published, lang)}</time>
+    </div>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
