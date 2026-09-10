@@ -1,0 +1,8 @@
+{
+  "name": "vincentiantopology",
+  "private": true,
+  "description": "Monorepo wrapper so Vercel can build from repo root (site lives in project/).",
+  "scripts": {
+    "build": "npm run build --prefix project"
+  }
+}
