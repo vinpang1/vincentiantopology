@@ -85,7 +85,8 @@
 - **drafts/{slug}/** = sync 副本 · 人機合作；**入 project DB 後刪除**
 - 同步方向：**P-agent → drafts**（Agent 更新後 sync）
 
-詳 [`articles/DRAFTS.md`](./articles/DRAFTS.md) · 快速入口 repo 根 [`草稿區`](../草稿區/)。
+詳 [`articles/DRAFTS.md`](./articles/DRAFTS.md) · 快速入口 repo 根 [`草稿區`](../草稿區/)。  
+**已備妥、待 bot 上站** → repo 根 [`待上站`](../待上站/)（唔好同 drafts 混）。
 
 ---
 
@@ -117,7 +118,7 @@
 | 區 | 路徑 |
 |---|---|
 | 1 網頁 | `src/`、`public/`、`design/` |
-| 2 文章 | `articles/drafts/`（[`DRAFTS.md`](./articles/DRAFTS.md) · `drafts-template/` · `craft/`）· repo 根 [`草稿區`](../草稿區/) |
+| 2 文章 | `articles/drafts/`（[`DRAFTS.md`](./articles/DRAFTS.md) · `drafts-template/` · `craft/`）· repo 根 [`草稿區`](../草稿區/) · 待上站 [`待上站`](../待上站/) |
 | 3 財務 | `finance/` |
 | 4 法律 | `legal/` |
 | 5 規格 | `constitution/`、**本檔** |
