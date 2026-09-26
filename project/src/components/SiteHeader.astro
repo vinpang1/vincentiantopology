@@ -16,11 +16,17 @@ function isActive(href: string): boolean {
       <img
         class="site-logo__img"
         src={site.logo}
-        alt={site.logoAlt}
+        alt=""
         width="96"
         height="38"
         decoding="async"
       />
+      <span class="site-brand">
+        <span class="site-brand__title">
+          {isEn ? site.nameEn : site.name}
+        </span>
+        <span class="site-brand__en" aria-hidden="true">VINCENTIAN TOPOLOGY</span>
+      </span>
     </a>
 
     <button

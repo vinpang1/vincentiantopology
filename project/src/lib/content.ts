@@ -81,6 +81,7 @@ export async function getLatestArticles(limit = 3) {
     .map((entry) => ({
       href: `/topics/${entry.data.series}/${entry.data.episode}`,
       title: entry.data.title,
+      description: entry.data.description,
       section: 'topics' as const,
       published: entry.data.published,
     }));
@@ -88,6 +89,7 @@ export async function getLatestArticles(limit = 3) {
   const viewItems = view.map((entry) => ({
     href: `/view/${slugFromId(entry.id)}`,
     title: entry.data.title,
+    description: entry.data.description,
     section: 'view' as const,
     published: entry.data.published,
   }));
@@ -95,6 +97,7 @@ export async function getLatestArticles(limit = 3) {
   const classicItems = classics.map((entry) => ({
     href: `/classics/${slugFromId(entry.id)}`,
     title: entry.data.title,
+    description: entry.data.description,
     section: 'classics' as const,
     published: entry.data.published,
   }));

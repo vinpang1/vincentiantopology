@@ -25,10 +25,12 @@
 - `alt` 文案：`Vincentian Topology · 萬脈同構｜文森思維`
 - 另備 `public/favicon.svg` 作瀏覽器小圖示（可日後換成 logo 衍生版）
 
-## 視覺方向（2026-07 · 當代長讀）
+## 視覺方向（2026-09 · 思想通訊）
 
-- 強標題字（Noto Serif TC）· 一句主張做 hero · 欄目文字導覽 · 少卡片
-- Accent：深墨青 `#1e3d3a` · 底 `#f7f7f6`
+- 語氣：**思想通訊**（newsletter）——暖色底、一句主張 hero、單篇「最新焦點」卡；**唔**走學術期刊／藝廊硬線框
+- 圓角：**Apple-like 軟邊**（大 `--radius`、pill 按鈕、列表／欄目 hover 用圓角底，少用橫線分割）
+- 字：標題 Noto Serif TC · UI／說明 IBM Plex Sans
+- Accent：深墨青 `#1e3d3a` · 底 `#f7f7f6` · Header 半透明 + `backdrop-filter` 模糊
 
 ## 站名對照
 
