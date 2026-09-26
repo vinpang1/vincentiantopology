@@ -44,6 +44,7 @@
 |---|---|
 | 規格／網站 | `project/` |
 | 草稿（快速） | `草稿區/` → `project/articles/drafts/` |
+| 待上站 | `待上站/`（已備妥 · 等 bot export；唔經 1→2→4） |
 | agent-db | `ai-agent/agent-db/`（P-agent 記憶） |
 | project DB | `project-db/`（持久資產） |
 | 四 Agent 規格 | `ai-agent/agents/agent_01/` … `agent_04/` |

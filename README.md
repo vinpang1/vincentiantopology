@@ -7,6 +7,7 @@
 ```
 vincentian-topology/
 ├── 草稿區/           捷徑 → project/articles/drafts/（只放進行中 {slug}/）
+├── 待上站/           已備妥、待 bot 上站（唔經 drafts 流水 · 唔會自動出街）
 ├── project/          網站、文章、財務、法律、constitution
 └── ai-agent/         agent-db · 四 Agent 規格
 ```
@@ -14,6 +15,7 @@ vincentian-topology/
 ## 資料流
 
 - **草稿** [`草稿區/`](./草稿區/) · 說明 [`project/articles/DRAFTS.md`](./project/articles/DRAFTS.md)：Agent 1→2→4 → **人工確認** → **project DB V02**
+- **待上站** [`待上站/`](./待上站/)：已寫好、等 `@agent-03-ops` copy 至 `src/content/`（與草稿區分開）
 - **Spin Map**：`~/Documents/Dev/_shared/spin-map`（只讀 · `spin_map_ref`）
 - **出街**：僅 `project/` build → `dist/`
 
