@@ -8,10 +8,54 @@ import {
   slugFromId,
 } from '../lib/content';
 
-const [introArticles, latest] = await Promise.all([
+const [introArticles, latestPool] = await Promise.all([
   getPublishedIntro(),
-  getLatestArticles(4),
+  getLatestArticles(5),
 ]);
+
+type FeaturedArticle = (typeof latestPool)[number] & {
+  section: 'view' | 'topics' | 'classics' | 'intro';
+};
+
+const primaryFeatured = latestPool[0] ?? null;
+let featured: FeaturedArticle | null = primaryFeatured;
+
+if (!featured && introArticles.length > 0) {
+  const introLatest = [...introArticles].sort(
+    (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+  )[0];
+  featured = {
+    href: `/intro/${slugFromId(introLatest.id)}`,
+    title: introLatest.data.title,
+    description: introLatest.data.description,
+    section: 'intro',
+    published: introLatest.data.published,
+  };
+}
+
+const latest = primaryFeatured
+  ? latestPool.slice(1, 5)
+  : latestPool.slice(0, 4);
+
+const readHref =
+  introArticles.length > 0
+    ? `/intro/${slugFromId(introArticles[0].id)}`
+    : sections.intro.href;
+
+const taglineLines = site.tagline.split(/(?<=；)|(?<=：)/).filter(Boolean);
+
+const heroDek =
+  '給當代迷惘讀者——看見兩極之間的拉扯，而非急於判斷對錯。';
+
+const sectionLabelZh: Record<
+  'view' | 'topics' | 'classics' | 'intro',
+  string
+> = {
+  intro: sections.intro.labelZh,
+  view: sections.view.labelZh,
+  topics: sections.topics.labelZh,
+  classics: sections.classics.labelZh,
+};
 
 const sectionNav = [
   {
@@ -40,16 +84,62 @@ const sectionNav = [
 <BaseLayout>
   <h1 class="visually-hidden">{site.name}</h1>
 
-  <nav class="section-nav" aria-label="欄目">
-    {
-      sectionNav.map((item) => (
-        <a class="section-nav__row" href={item.href}>
-          <span class="section-nav__title">{item.title}</span>
-          <span class="section-nav__desc">{item.desc}</span>
+  <section class="hero" aria-labelledby="hero-claim">
+    <p class="hero__kicker">本期通訊</p>
+    <p id="hero-claim" class="hero__claim">
+      {
+        taglineLines.map((line) => (
+          <span class="hero__claim-line">{line}</span>
+        ))
+      }
+    </p>
+    <p class="hero__dek">{heroDek}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--pill" href={readHref}>
+        開始閱讀 →
+      </a>
+      <a
+        class="btn btn--ghost"
+        href={site.subscribeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        訂閱電子報
+      </a>
+    </div>
+  </section>
+
+  {
+    featured && (
+      <section class="featured-block" aria-labelledby="featured-heading">
+        <h2 id="featured-heading" class="section-heading">最新焦點</h2>
+        <a class="featured-card" href={featured.href}>
+          <span class="featured-card__meta">
+            {sectionLabelZh[featured.section]} ·{' '}
+            {formatDate(featured.published)}
+          </span>
+          <h3 class="featured-card__title">{featured.title}</h3>
+          {featured.description && (
+            <p class="featured-card__desc">{featured.description}</p>
+          )}
         </a>
-      ))
-    }
-  </nav>
+      </section>
+    )
+  }
+
+  <section class="section-block section-block--nav" aria-labelledby="columns-heading">
+    <h2 id="columns-heading" class="section-heading">欄目</h2>
+    <nav class="section-nav" aria-label="欄目">
+      {
+        sectionNav.map((item) => (
+          <a class="section-nav__row" href={item.href}>
+            <span class="section-nav__title">{item.title}</span>
+            <span class="section-nav__desc">{item.desc}</span>
+          </a>
+        ))
+      }
+    </nav>
+  </section>
 
   {
     introArticles.length > 0 && (
