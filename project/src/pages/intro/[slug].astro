@@ -2,17 +2,28 @@
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { sections } from '../../site.config';
-import { slugFromId } from '../../lib/content';
+import {
+  navigationForIntro,
+  slugFromId,
+} from '../../lib/content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('intro', ({ data }) => !data.draft);
   return entries.map((entry) => ({
     params: { slug: slugFromId(entry.id) },
-    props: { entry },
+    props: {
+      entry,
+      navigation: navigationForIntro(
+        entries,
+        entry,
+        sections.intro.href,
+        sections.intro.labelZh,
+      ),
+    },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, navigation } = Astro.props;
 const { Content } = await render(entry);
 ---
 
@@ -22,6 +33,7 @@ const { Content } = await render(entry);
   sectionLabel={`${sections.intro.labelZh} · 0-${entry.data.order}`}
   published={entry.data.published}
   lang={entry.data.lang}
+  navigation={navigation}
 >
   <Content />
 </ArticleLayout>
