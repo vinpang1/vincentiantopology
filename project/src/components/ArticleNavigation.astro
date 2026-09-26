@@ -1,0 +1,66 @@
+---
+import type { ArticleNavigationData } from '../lib/content';
+
+interface Props extends ArticleNavigationData {
+  placement: 'top' | 'bottom';
+}
+
+const { placement, sectionHref, sectionLabel, prev, next } = Astro.props;
+const isTop = placement === 'top';
+---
+
+<nav
+  class:list={['article-nav', isTop && 'article-nav--top']}
+  aria-label={isTop ? '文章導覽（頁首）' : '文章導覽（頁尾）'}
+>
+  {
+    isTop ? (
+      <div class="article-nav__row article-nav__row--top">
+        {prev ? (
+          <a class="article-nav__link article-nav__link--prev" href={prev.href}>
+            <span class="article-nav__kicker">上一篇</span>
+            <span class="article-nav__title">{prev.title}</span>
+          </a>
+        ) : (
+          <a
+            class="article-nav__link article-nav__link--section"
+            href={sectionHref}
+          >
+            <span class="article-nav__kicker">返回欄目</span>
+            <span class="article-nav__title">{sectionLabel}</span>
+          </a>
+        )}
+      </div>
+    ) : (
+      <div class="article-nav__row article-nav__row--bottom">
+        {prev ? (
+          <a class="article-nav__link article-nav__link--prev" href={prev.href}>
+            <span class="article-nav__kicker">上一篇</span>
+            <span class="article-nav__title">{prev.title}</span>
+          </a>
+        ) : (
+          <a
+            class="article-nav__link article-nav__link--section"
+            href={sectionHref}
+          >
+            <span class="article-nav__kicker">返回欄目</span>
+            <span class="article-nav__title">{sectionLabel}</span>
+          </a>
+        )}
+        {next ? (
+          <a class="article-nav__link article-nav__link--next" href={next.href}>
+            <span class="article-nav__kicker">下一篇</span>
+            <span class="article-nav__title">{next.title}</span>
+          </a>
+        ) : prev ? (
+          <a
+            class="article-nav__link article-nav__link--section article-nav__link--section-only"
+            href={sectionHref}
+          >
+            <span class="article-nav__kicker">返回欄目</span>
+            <span class="article-nav__title">{sectionLabel}</span>
+          </a>
+        ) : null}
+      </div>
+    )}
+</nav>

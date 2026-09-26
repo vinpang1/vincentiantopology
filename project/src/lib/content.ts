@@ -9,6 +9,109 @@ export function slugFromId(id: string): string {
   return id.replace(/\.md$/, '').split('/').pop() ?? id;
 }
 
+export type ArticleNeighbor = {
+  href: string;
+  title: string;
+};
+
+export type ArticleNavigationData = {
+  sectionHref: string;
+  sectionLabel: string;
+  prev?: ArticleNeighbor;
+  next?: ArticleNeighbor;
+};
+
+function neighborsAtIndex(
+  sorted: { href: string; title: string }[],
+  index: number,
+  sectionHref: string,
+  sectionLabel: string,
+): ArticleNavigationData {
+  return {
+    sectionHref,
+    sectionLabel,
+    prev: index > 0 ? sorted[index - 1] : undefined,
+    next: index < sorted.length - 1 ? sorted[index + 1] : undefined,
+  };
+}
+
+export function navigationForIntro(
+  entries: IntroEntry[],
+  current: IntroEntry,
+  sectionHref: string,
+  sectionLabel: string,
+): ArticleNavigationData {
+  const sorted = [...entries]
+    .filter((e) => !e.data.draft)
+    .sort((a, b) => a.data.order - b.data.order)
+    .map((entry) => ({
+      href: `/intro/${slugFromId(entry.id)}`,
+      title: entry.data.title,
+    }));
+  const index = sorted.findIndex((item) => item.href === `/intro/${slugFromId(current.id)}`);
+  return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
+}
+
+export function navigationForView(
+  entries: ViewEntry[],
+  current: ViewEntry,
+  sectionHref: string,
+  sectionLabel: string,
+): ArticleNavigationData {
+  const sorted = [...entries]
+    .filter((e) => !e.data.draft)
+    .sort((a, b) => a.data.published.getTime() - b.data.published.getTime())
+    .map((entry) => ({
+      href: `/view/${slugFromId(entry.id)}`,
+      title: entry.data.title,
+    }));
+  const index = sorted.findIndex(
+    (item) => item.href === `/view/${slugFromId(current.id)}`,
+  );
+  return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
+}
+
+export function navigationForClassics(
+  entries: ClassicsEntry[],
+  current: ClassicsEntry,
+  sectionHref: string,
+  sectionLabel: string,
+): ArticleNavigationData {
+  const sorted = [...entries]
+    .filter((e) => !e.data.draft)
+    .sort((a, b) => a.data.published.getTime() - b.data.published.getTime())
+    .map((entry) => ({
+      href: `/classics/${slugFromId(entry.id)}`,
+      title: entry.data.title,
+    }));
+  const index = sorted.findIndex(
+    (item) => item.href === `/classics/${slugFromId(current.id)}`,
+  );
+  return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
+}
+
+export function navigationForTopics(
+  entries: TopicsEntry[],
+  current: TopicsEntry,
+  sectionHref: string,
+  sectionLabel: string,
+): ArticleNavigationData {
+  const sorted = [...entries]
+    .filter(
+      (e) => !e.data.draft && e.data.series === current.data.series,
+    )
+    .sort((a, b) => a.data.episode - b.data.episode)
+    .map((entry) => ({
+      href: `/topics/${entry.data.series}/${entry.data.episode}`,
+      title: entry.data.title,
+    }));
+  const index = sorted.findIndex(
+    (item) =>
+      item.href === `/topics/${current.data.series}/${current.data.episode}`,
+  );
+  return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
+}
+
 export function formatDate(date: Date, lang: 'zh-Hant' | 'en' = 'zh-Hant'): string {
   return date.toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-Hant-TW', {
     year: 'numeric',

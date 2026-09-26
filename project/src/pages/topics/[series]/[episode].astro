@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import { sections } from '../../../site.config';
+import { navigationForTopics } from '../../../lib/content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('topics', ({ data }) => !data.draft);
@@ -10,11 +11,19 @@ export async function getStaticPaths() {
       series: entry.data.series,
       episode: String(entry.data.episode),
     },
-    props: { entry },
+    props: {
+      entry,
+      navigation: navigationForTopics(
+        entries,
+        entry,
+        sections.topics.href,
+        sections.topics.labelZh,
+      ),
+    },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, navigation } = Astro.props;
 const { Content } = await render(entry);
 ---
 
@@ -24,6 +33,7 @@ const { Content } = await render(entry);
   sectionLabel={`${sections.topics.labelZh} · ${entry.data.seriesTitle} · 第 ${entry.data.episode} 期`}
   published={entry.data.published}
   lang={entry.data.lang}
+  navigation={navigation}
 >
   <Content />
 </ArticleLayout>
