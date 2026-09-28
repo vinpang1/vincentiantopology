@@ -1,8 +1,16 @@
 ---
 import { navItems, site } from '../site.config';
 
+interface Props {
+  readingContext?: boolean;
+  columnsHref?: string;
+}
+
+const { readingContext = false, columnsHref } = Astro.props;
+
 const currentPath = Astro.url.pathname;
 const isEn = currentPath === '/en' || currentPath.startsWith('/en/');
+const columnsLink = columnsHref ?? (isEn ? '/en' : '/');
 
 function isActive(href: string): boolean {
   if (href === '/') return currentPath === '/';
@@ -40,32 +48,49 @@ function isActive(href: string): boolean {
       <span class="nav-toggle__bars" aria-hidden="true"></span>
     </button>
 
-    <nav id="site-nav" class="site-nav" data-site-nav aria-label="主要導航">
+    <nav
+      id="site-nav"
+      class:list={['site-nav', readingContext && 'site-nav--reading']}
+      data-site-nav
+      aria-label="主要導航"
+    >
       <ul class="site-nav__list">
         {
-          navItems.map((item) => (
-            <li>
-              <span class="site-nav__item">
-                <a
-                  class="site-nav__link"
-                  href={isEn ? `/en${item.href}` : item.href}
-                  aria-current={isActive(isEn ? `/en${item.href}` : item.href) ? 'page' : undefined}
-                >
-                  {isEn ? item.labelEn : item.labelZh}
-                </a>
-              </span>
+          readingContext ? (
+            <li class="site-nav__item site-nav__item--columns">
+              <a class="site-nav__link" href={columnsLink}>
+                {isEn ? 'Sections' : '欄目'}
+              </a>
             </li>
-          ))
+          ) : (
+            navItems.map((item) => (
+              <li>
+                <span class="site-nav__item">
+                  <a
+                    class="site-nav__link"
+                    href={isEn ? `/en${item.href}` : item.href}
+                    aria-current={
+                      isActive(isEn ? `/en${item.href}` : item.href) ? 'page' : undefined
+                    }
+                  >
+                    {isEn ? item.labelEn : item.labelZh}
+                  </a>
+                </span>
+              </li>
+            ))
+          )
         }
-        <li>
-          <a
-            class="site-nav__link site-nav__link--lang"
-            href={isEn ? '/' : '/en'}
-            aria-label={isEn ? '切換至中文' : 'Switch to English'}
-          >
-            {isEn ? '中文' : 'EN'}
-          </a>
-        </li>
+        {!readingContext && (
+          <li>
+            <a
+              class="site-nav__link site-nav__link--lang"
+              href={isEn ? '/' : '/en'}
+              aria-label={isEn ? '切換至中文' : 'Switch to English'}
+            >
+              {isEn ? '中文' : 'EN'}
+            </a>
+          </li>
+        )}
         <li>
           <a
             class="site-nav__link site-nav__link--cta"
@@ -73,7 +98,7 @@ function isActive(href: string): boolean {
             target={site.subscribeUrl.startsWith('http') ? '_blank' : undefined}
             rel={site.subscribeUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
           >
-            {isEn ? 'Subscribe (link)' : site.subscribeLabel}
+            {isEn ? 'Subscribe' : site.subscribeLabel}
           </a>
         </li>
       </ul>
