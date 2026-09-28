@@ -16,45 +16,41 @@ const isTop = placement === 'top';
   {
     isTop ? (
       <div class="article-nav__row article-nav__row--top">
+        <a class="article-nav__inline" href={sectionHref}>
+          ← 返回欄目
+        </a>
         {prev ? (
-          <a class="article-nav__link article-nav__link--prev" href={prev.href}>
-            <span class="article-nav__kicker">上一篇</span>
-            <span class="article-nav__title">{prev.title}</span>
+          <a class="article-nav__inline" href={prev.href}>
+            上一篇
           </a>
-        ) : (
-          <a
-            class="article-nav__link article-nav__link--section"
-            href={sectionHref}
-          >
-            <span class="article-nav__kicker">返回欄目</span>
-            <span class="article-nav__title">{sectionLabel}</span>
+        ) : null}
+        {next ? (
+          <a class="article-nav__inline" href={next.href}>
+            下一篇 →
           </a>
-        )}
+        ) : null}
       </div>
     ) : (
       <div class="article-nav__row article-nav__row--bottom">
         {prev ? (
-          <a class="article-nav__link article-nav__link--prev" href={prev.href}>
+          <a class="article-nav__foot" href={prev.href}>
             <span class="article-nav__kicker">上一篇</span>
             <span class="article-nav__title">{prev.title}</span>
           </a>
         ) : (
-          <a
-            class="article-nav__link article-nav__link--section"
-            href={sectionHref}
-          >
+          <a class="article-nav__foot" href={sectionHref}>
             <span class="article-nav__kicker">返回欄目</span>
             <span class="article-nav__title">{sectionLabel}</span>
           </a>
         )}
         {next ? (
-          <a class="article-nav__link article-nav__link--next" href={next.href}>
+          <a class="article-nav__foot article-nav__foot--next" href={next.href}>
             <span class="article-nav__kicker">下一篇</span>
             <span class="article-nav__title">{next.title}</span>
           </a>
         ) : prev ? (
           <a
-            class="article-nav__link article-nav__link--section article-nav__link--section-only"
+            class="article-nav__foot article-nav__foot--next"
             href={sectionHref}
           >
             <span class="article-nav__kicker">返回欄目</span>
@@ -62,5 +58,6 @@ const isTop = placement === 'top';
           </a>
         ) : null}
       </div>
-    )}
+    )
+  }
 </nav>

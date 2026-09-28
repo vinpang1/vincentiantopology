@@ -9,6 +9,9 @@ interface Props {
   description?: string;
   narrow?: boolean;
   lang?: 'zh-Hant' | 'en';
+  /** Slim header + 34rem measure on long-form article pages */
+  articleReading?: boolean;
+  columnsHref?: string;
 }
 
 const {
@@ -16,6 +19,8 @@ const {
   description = site.description,
   narrow = false,
   lang = 'zh-Hant',
+  articleReading = false,
+  columnsHref,
 } = Astro.props;
 
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
@@ -39,9 +44,9 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     />
     <title>{pageTitle}</title>
   </head>
-  <body>
+  <body class:list={[articleReading && 'layout-article']}>
     <a class="skip-link" href="#main">跳至主內容</a>
-    <SiteHeader />
+    <SiteHeader readingContext={articleReading} columnsHref={columnsHref} />
     <main id="main" class="site-main">
       <div class={narrow ? 'container container--narrow' : 'container'}>
         <slot />
