@@ -26,23 +26,34 @@ Many people carry a picture of “the whole world shining at once”: pyramids f
 
 ## Roughly When Was Giza?
 
-| Source | The three Giza pyramids (Khufu, Khafre, Menkaure) |
-| --- | --- |
-| Petrie | Fourth Dynasty, c. 4000–3800 BCE |
-| Burr | All Egyptian pyramids c. 4000–2500 BCE |
-| Mainstream archaeology today | Khufu c. 2580–2560 BCE; Khafre and Menkaure slightly later |
+**When were the three Giza pyramids (Khufu, Khafre, Menkaure) built?**
 
-Petrie (1853–1942) and Burr’s dates run early; using them directly against China lengthens the feeling of “Egypt far ahead”—so this installment takes c. 2600–2500 BCE as the Giza peak, closer to modern Egyptology and within the key Chinese prehistoric window Eberhard discusses.
+- **Petrie**: Fourth Dynasty, c. 4000 to 3800 BCE
+- **Burr**: All Egyptian pyramids c. 4000 to 2500 BCE
+- **Mainstream archaeology today**: Khufu c. 2580 to 2560 BCE; Khafre and Menkaure slightly later
+
+Petrie (1853–1942) and Burr’s dates run early; using them directly against China lengthens the feeling of “Egypt far ahead”—so this installment takes c. 2600 to 2500 BCE as the Giza peak, closer to modern Egyptology and within the key Chinese prehistoric window Eberhard discusses.
 
 ## In the Same Window, Where Was China?
 
 Eberhard (1907–1989, German sinologist, *A History of China*) held that archaeology in the third millennium BCE shows no highly developed civilization; a fusion we can call “Chinese civilization” formed only after about 1300 BCE—this archaeological axis pulls directly away from the literary axis that puts the Yellow Emperor, Yao, Shun, and Yu in the same era as the pyramids.
 
-| Date (approx.) | Egypt | China (per Eberhard) |
-| --- | --- | --- |
-| 2600–2500 BCE | Fourth Dynasty; tomb pyramids built with labor on the order of one hundred thousand | No unified state; many prehistoric cultures on the Yellow and Yangtze rivers |
-| 2000–1600 BCE | Middle Kingdom and others | Possible Xia traces; farming, some bronze, no writing yet |
-| From c. 1600 BCE | Successive dynasties | Shang: Anyang, oracle bone script, bronze ritual vessels, royal tombs |
+**Same time, two places (China after Eberhard)**
+
+**c. 2600 to 2500 BCE**
+
+- Egypt: Fourth Dynasty; tomb pyramids built with labor on the order of one hundred thousand
+- China: No unified state; many prehistoric cultures on the Yellow and Yangtze rivers
+
+**c. 2000 to 1600 BCE**
+
+- Egypt: Middle Kingdom and others
+- China: Possible Xia traces; farming, some bronze, no writing yet
+
+**From c. 1600 BCE**
+
+- Egypt: Successive dynasties
+- China: Shang: Anyang, oracle bone script, bronze ritual vessels, royal tombs
 
 When Giza was built, mainland China had no comparable dynasty, literate state, or giant stone engineering. Eberhard (as above) treated pre–Warring States compiled names of ancient kings as later projections back onto the third millennium—reading pyramid dates is good practice for not forcing literary narrative and archaeological dates into one picture.
 
