@@ -36,3 +36,4 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://www.vincentiantopology.com/sitemap-index.xml
+Sitemap: https://www.vincentiantopology.com/sitemap.xml
