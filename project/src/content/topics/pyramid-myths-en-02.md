@@ -9,8 +9,8 @@ lang: en
 draft: false
 ---
 
-Vincentian Topology | Vincent's Thinking<br>
-Author: Vincent
+All Things Are One｜Vincentian Topology<br>
+Vincent
 
 ## Introduction
 
