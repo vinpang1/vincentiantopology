@@ -3,5 +3,12 @@
   "framework": "astro",
   "installCommand": "npm install --prefix project",
   "buildCommand": "npm run build --prefix project",
-  "outputDirectory": "project/dist"
+  "outputDirectory": "project/dist",
+  "redirects": [
+    {
+      "source": "/topics/pyramid-myths-en/:episode",
+      "destination": "/en/topics/pyramid-myths-en/:episode",
+      "permanent": true
+    }
+  ]
 }

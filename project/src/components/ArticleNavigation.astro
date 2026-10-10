@@ -1,32 +1,51 @@
 ---
-import type { ArticleNavigationData } from '../lib/content';
+import type { ArticleNavigationData, ContentLang } from '../lib/content';
 
 interface Props extends ArticleNavigationData {
   placement: 'top' | 'bottom';
+  lang?: ContentLang;
 }
 
-const { placement, sectionHref, sectionLabel, prev, next } = Astro.props;
+const { placement, sectionHref, sectionLabel, prev, next, lang = 'zh-Hant' } =
+  Astro.props;
 const isTop = placement === 'top';
+const isEn = lang === 'en';
+
+const labels = isEn
+  ? {
+      back: 'Back to section',
+      prev: 'Previous',
+      next: 'Next',
+      ariaTop: 'Article navigation (top)',
+      ariaBottom: 'Article navigation (bottom)',
+    }
+  : {
+      back: '返回欄目',
+      prev: '上一篇',
+      next: '下一篇',
+      ariaTop: '文章導覽（頁首）',
+      ariaBottom: '文章導覽（頁尾）',
+    };
 ---
 
 <nav
   class:list={['article-nav', isTop && 'article-nav--top']}
-  aria-label={isTop ? '文章導覽（頁首）' : '文章導覽（頁尾）'}
+  aria-label={isTop ? labels.ariaTop : labels.ariaBottom}
 >
   {
     isTop ? (
       <div class="article-nav__row article-nav__row--top">
         <a class="article-nav__inline" href={sectionHref}>
-          ← 返回欄目
+          ← {labels.back}
         </a>
         {prev ? (
           <a class="article-nav__inline" href={prev.href}>
-            上一篇
+            {labels.prev}
           </a>
         ) : null}
         {next ? (
           <a class="article-nav__inline" href={next.href}>
-            下一篇 →
+            {labels.next} →
           </a>
         ) : null}
       </div>
@@ -34,18 +53,18 @@ const isTop = placement === 'top';
       <div class="article-nav__row article-nav__row--bottom">
         {prev ? (
           <a class="article-nav__foot" href={prev.href}>
-            <span class="article-nav__kicker">上一篇</span>
+            <span class="article-nav__kicker">{labels.prev}</span>
             <span class="article-nav__title">{prev.title}</span>
           </a>
         ) : (
           <a class="article-nav__foot" href={sectionHref}>
-            <span class="article-nav__kicker">返回欄目</span>
+            <span class="article-nav__kicker">{labels.back}</span>
             <span class="article-nav__title">{sectionLabel}</span>
           </a>
         )}
         {next ? (
           <a class="article-nav__foot article-nav__foot--next" href={next.href}>
-            <span class="article-nav__kicker">下一篇</span>
+            <span class="article-nav__kicker">{labels.next}</span>
             <span class="article-nav__title">{next.title}</span>
           </a>
         ) : prev ? (
@@ -53,7 +72,7 @@ const isTop = placement === 'top';
             class="article-nav__foot article-nav__foot--next"
             href={sectionHref}
           >
-            <span class="article-nav__kicker">返回欄目</span>
+            <span class="article-nav__kicker">{labels.back}</span>
             <span class="article-nav__title">{sectionLabel}</span>
           </a>
         ) : null}

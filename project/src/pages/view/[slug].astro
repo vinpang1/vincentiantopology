@@ -8,7 +8,10 @@ import {
 } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('view', ({ data }) => !data.draft);
+  const entries = await getCollection(
+    'view',
+    ({ data }) => !data.draft && data.lang === 'zh-Hant',
+  );
   return entries.map((entry) => ({
     params: { slug: slugFromId(entry.id) },
     props: {

@@ -7,7 +7,7 @@ import {
   slugFromId,
 } from '../../../lib/content';
 
-const articles = await getPublishedIntro();
+const articles = await getPublishedIntro('en');
 ---
 
 <BaseLayout lang="en" title={sections.intro.labelEn}>
@@ -118,7 +118,7 @@ const articles = await getPublishedIntro();
             href={`/en/intro/${slugFromId(entry.id)}`}
           >
             <span class="article-list__meta">
-              0-{entry.data.order} · {formatDate(entry.data.published)}
+              0-{entry.data.order} · {formatDate(entry.data.published, 'en')}
             </span>
             <h2 class="article-list__title">{entry.data.title}</h2>
             {entry.data.description && (

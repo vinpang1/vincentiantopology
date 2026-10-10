@@ -1,6 +1,51 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site, sections } from '../../site.config';
+import {
+  getPublishedIntro,
+  getLatestArticles,
+  formatDate,
+  slugFromId,
+} from '../../lib/content';
+
+const [introArticles, latestPool] = await Promise.all([
+  getPublishedIntro('en'),
+  getLatestArticles(5, 'en'),
+]);
+
+type FeaturedArticle = (typeof latestPool)[number] & {
+  section: 'view' | 'topics' | 'classics' | 'intro';
+};
+
+const primaryFeatured = latestPool[0] ?? null;
+let featured: FeaturedArticle | null = primaryFeatured;
+
+if (!featured && introArticles.length > 0) {
+  const introLatest = [...introArticles].sort(
+    (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+  )[0];
+  featured = {
+    href: `/en/intro/${slugFromId(introLatest.id)}`,
+    title: introLatest.data.title,
+    description: introLatest.data.description,
+    section: 'intro',
+    published: introLatest.data.published,
+  };
+}
+
+const latest = primaryFeatured
+  ? latestPool.slice(1, 5)
+  : latestPool.slice(0, 4);
+
+const sectionLabelEn: Record<
+  'view' | 'topics' | 'classics' | 'intro',
+  string
+> = {
+  intro: sections.intro.labelEn,
+  view: sections.view.labelEn,
+  topics: sections.topics.labelEn,
+  classics: sections.classics.labelEn,
+};
 
 const sectionNav = [
   {
@@ -29,6 +74,24 @@ const sectionNav = [
 <BaseLayout lang="en" title="Home">
   <h1 class="visually-hidden">{site.nameEn}</h1>
 
+  {
+    featured && (
+      <section class="featured-block" aria-labelledby="featured-heading-en">
+        <h2 id="featured-heading-en" class="section-heading">Latest</h2>
+        <a class="featured-card" href={featured.href}>
+          <span class="featured-card__meta">
+            {sectionLabelEn[featured.section]} ·{' '}
+            {formatDate(featured.published, 'en')}
+          </span>
+          <h3 class="featured-card__title">{featured.title}</h3>
+          {featured.description && (
+            <p class="featured-card__desc">{featured.description}</p>
+          )}
+        </a>
+      </section>
+    )
+  }
+
   <nav class="section-nav" aria-label="Sections">
     {
       sectionNav.map((item) => (
@@ -39,4 +102,24 @@ const sectionNav = [
       ))
     }
   </nav>
+
+  {
+    latest.length > 0 && (
+      <section class="section-block">
+        <h2 class="section-heading">Recent articles</h2>
+        <ul class="article-list">
+          {latest.map((item) => (
+            <li class="article-list__item">
+              <a class="article-list__link" href={item.href}>
+                <span class="article-list__meta">
+                  {formatDate(item.published, 'en')}
+                </span>
+                <h3 class="article-list__title">{item.title}</h3>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 </BaseLayout>

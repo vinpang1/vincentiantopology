@@ -1,18 +1,48 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { sections } from '../../../site.config';
+import {
+  getPublishedView,
+  formatDate,
+  slugFromId,
+} from '../../../lib/content';
+
+const articles = await getPublishedView('en');
 ---
 
-<BaseLayout lang="en" title="Vincentian View">
+<BaseLayout lang="en" title={sections.view.labelEn}>
   <header class="page-header">
-    <p class="page-header__eyebrow">Vincentian View</p>
-    <h1 class="page-header__title">Vincentian View</h1>
+    <p class="page-header__eyebrow">{sections.view.labelEn}</p>
+    <h1 class="page-header__title">{sections.view.labelEn}</h1>
     <p class="page-header__desc">
-      Short pieces with a single judgment on what happens now. (Coming soon)
+      Short pieces with a single judgment on what happens now.
     </p>
   </header>
 
-  <p class="placeholder-note">
-    English Vincentian View posts will appear here.
-  </p>
+  {
+    articles.length === 0 ? (
+      <p class="placeholder-note">
+        English Vincentian View posts will appear here.
+      </p>
+    ) : (
+      <ul class="article-list">
+        {articles.map((entry) => (
+          <li class="article-list__item">
+            <a
+              class="article-list__link"
+              href={`/en/view/${slugFromId(entry.id)}`}
+            >
+              <span class="article-list__meta">
+                {formatDate(entry.data.published, 'en')}
+              </span>
+              <h2 class="article-list__title">{entry.data.title}</h2>
+              {entry.data.description && (
+                <p class="card__desc">{entry.data.description}</p>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </BaseLayout>
-
