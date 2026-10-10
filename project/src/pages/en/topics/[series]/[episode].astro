@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
 import { sections } from '../../../../site.config';
 import { navigationForTopics } from '../../../../lib/content';
+import { topicHreflangAlternates } from '../../../../lib/article-paths';
 
 export async function getStaticPaths() {
   const sectionHref = `/en${sections.topics.href}`;
@@ -39,6 +40,10 @@ const { Content } = await render(entry);
   published={entry.data.published}
   lang="en"
   navigation={navigation}
+  hreflangAlternates={topicHreflangAlternates(
+    entry.data.series,
+    entry.data.episode,
+  )}
 >
   <Content />
 </ArticleLayout>

@@ -1,8 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import { sitemapSerialize } from './src/lib/sitemap-serialize.ts';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.vincentiantopology.com',
+  integrations: [
+    sitemap({
+      serialize: sitemapSerialize,
+    }),
+  ],
   redirects: {
     '/topics/pyramid-myths-en/1': {
       status: 308,

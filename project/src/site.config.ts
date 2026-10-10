@@ -1,11 +1,11 @@
 export const site = {
   name: '萬脈同構｜文森思維',
-  nameEn: 'All Things Are One | Vincentian Topology',
+  nameEn: 'All Things Are One｜Vincentian Topology',
   tagline:
     '閱讀不是為了判斷對錯；而是為了看見：思維在兩極之間的拉扯',
   description:
     '給當代迷惘讀者的閱讀空間——看見思維在兩極之間如何拉扯，而非急於判對錯。',
-  url: 'https://vincentiantopology.com',
+  url: 'https://www.vincentiantopology.com',
   subscribeUrl: 'https://vincentiantopology.substack.com',
   subscribeLabel: '訂閱',
   logo: '/logo.png',

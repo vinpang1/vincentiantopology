@@ -2,6 +2,12 @@
 import BaseLayout from './BaseLayout.astro';
 import ArticleNavigation from '../components/ArticleNavigation.astro';
 import { formatDate, type ArticleNavigationData } from '../lib/content';
+import {
+  authorName,
+  publisherName,
+  type HreflangAlternate,
+} from '../lib/article-paths';
+import { site } from '../site.config';
 
 interface Props {
   title: string;
@@ -10,6 +16,7 @@ interface Props {
   published: Date;
   lang?: 'zh-Hant' | 'en';
   navigation?: ArticleNavigationData;
+  hreflangAlternates?: HreflangAlternate[];
 }
 
 const {
@@ -19,16 +26,45 @@ const {
   published,
   lang = 'zh-Hant',
   navigation,
+  hreflangAlternates,
 } = Astro.props;
+
+const articleDescription = description ?? '';
+const canonical = new URL(Astro.url.pathname, site.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: articleDescription,
+  datePublished: published.toISOString(),
+  inLanguage: lang === 'en' ? 'en' : 'zh-Hant',
+  author: {
+    '@type': 'Person',
+    name: authorName(lang),
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: publisherName(lang),
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonical,
+  },
+};
 ---
 
 <BaseLayout
   title={title}
-  description={description}
+  description={articleDescription}
   narrow
   articleReading
   columnsHref={navigation?.sectionHref}
   lang={lang}
+  ogType="article"
+  published={published}
+  hreflangAlternates={hreflangAlternates}
+  jsonLd={jsonLd}
 >
   <article class="article-reading">
     {

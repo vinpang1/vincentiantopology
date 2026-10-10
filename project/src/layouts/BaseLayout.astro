@@ -3,6 +3,11 @@ import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { site } from '../site.config';
+import {
+  type HreflangAlternate,
+  ogLocale,
+  publisherName,
+} from '../lib/article-paths';
 
 interface Props {
   title?: string;
@@ -12,6 +17,10 @@ interface Props {
   /** Slim header + 34rem measure on long-form article pages */
   articleReading?: boolean;
   columnsHref?: string;
+  ogType?: 'website' | 'article';
+  published?: Date;
+  hreflangAlternates?: HreflangAlternate[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -21,11 +30,18 @@ const {
   lang = 'zh-Hant',
   articleReading = false,
   columnsHref,
+  ogType = 'website',
+  published,
+  hreflangAlternates,
+  jsonLd,
 } = Astro.props;
 
 const siteTitle = lang === 'en' ? site.nameEn : site.name;
 const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
 const canonical = new URL(Astro.url.pathname, site.url).href;
+const locale = ogLocale(lang);
+const alternateLocale = lang === 'en' ? ogLocale('zh-Hant') : ogLocale('en');
+const jsonLdPayload = jsonLd ? JSON.stringify(jsonLd) : null;
 ---
 
 <!doctype html>
@@ -38,6 +54,34 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content={publisherName(lang)} />
+    {
+      ogType === 'article' && published && (
+        <meta property="article:published_time" content={published.toISOString()} />
+      )
+    }
+    {
+      hreflangAlternates?.map((alt) => (
+        <link rel="alternate" hreflang={alt.lang} href={alt.url} />
+      ))
+    }
+    {
+      !hreflangAlternates?.length && (
+        <meta property="og:locale:alternate" content={alternateLocale} />
+      )
+    }
+    {
+      jsonLdPayload && (
+        <script type="application/ld+json" set:html={jsonLdPayload} />
+      )
+    }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
