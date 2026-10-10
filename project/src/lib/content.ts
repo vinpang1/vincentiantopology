@@ -1,15 +1,13 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { slugFromId, type ContentLang } from './article-paths';
 
-export type ContentLang = 'zh-Hant' | 'en';
+export type { ContentLang };
+export { slugFromId };
 
 export type IntroEntry = CollectionEntry<'intro'>;
 export type ViewEntry = CollectionEntry<'view'>;
 export type TopicsEntry = CollectionEntry<'topics'>;
 export type ClassicsEntry = CollectionEntry<'classics'>;
-
-export function slugFromId(id: string): string {
-  return id.replace(/\.md$/, '').split('/').pop() ?? id;
-}
 
 function pathPrefix(lang: ContentLang): string {
   return lang === 'en' ? '/en' : '';
