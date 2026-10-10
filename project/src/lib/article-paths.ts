@@ -56,6 +56,20 @@ const TOPIC_EN_TO_ZH: Record<string, string> = {
   'pyramid-myths-en': 'pyramid-myths',
 };
 
+const INTRO_ZH_TO_EN: Record<string, string> = {
+  '0-1': '0-1-en',
+  '0-2': '0-2-en',
+  '0-3': '0-3-en',
+  '0-4': '0-4-en',
+};
+
+const INTRO_EN_TO_ZH: Record<string, string> = {
+  '0-1-en': '0-1',
+  '0-2-en': '0-2',
+  '0-3-en': '0-3',
+  '0-4-en': '0-4',
+};
+
 export type HreflangAlternate = {
   lang: 'zh-Hant' | 'en';
   url: string;
@@ -86,6 +100,34 @@ export function topicHreflangAlternates(
     {
       lang: 'en',
       url: absoluteUrl(`/en/topics/${enSeries}/${episode}`),
+    },
+  ];
+}
+
+export function introHreflangAlternates(
+  slug: string,
+): HreflangAlternate[] | undefined {
+  let zhSlug: string | undefined;
+  let enSlug: string | undefined;
+
+  if (slug in INTRO_ZH_TO_EN) {
+    zhSlug = slug;
+    enSlug = INTRO_ZH_TO_EN[slug];
+  } else if (slug in INTRO_EN_TO_ZH) {
+    enSlug = slug;
+    zhSlug = INTRO_EN_TO_ZH[slug];
+  }
+
+  if (!zhSlug || !enSlug) return undefined;
+
+  return [
+    {
+      lang: 'zh-Hant',
+      url: absoluteUrl(`/intro/${zhSlug}`),
+    },
+    {
+      lang: 'en',
+      url: absoluteUrl(`/en/intro/${enSlug}`),
     },
   ];
 }
