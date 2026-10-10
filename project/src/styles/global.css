@@ -41,11 +41,13 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   hanging-punctuation: first last;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: clip;
   font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: var(--line-height);
@@ -445,6 +447,11 @@ a:hover {
   margin-bottom: 0.85rem;
   font-size: clamp(1.65rem, 4.2vw, 2.2rem);
   letter-spacing: 0.015em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: strict;
+  max-width: 100%;
 }
 
 .layout-article .page-header .article-meta {
@@ -776,7 +783,13 @@ a:hover {
 
 .page-header {
   margin-bottom: clamp(var(--space-xl), 5vw, var(--space-2xl));
-  max-width: var(--measure);
+  max-width: min(var(--measure), 100%);
+  min-width: 0;
+}
+
+.article-reading {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .page-header__eyebrow {
@@ -795,8 +808,11 @@ a:hover {
   font-weight: 600;
   line-height: var(--line-height-tight);
   letter-spacing: 0.02em;
-  word-break: keep-all;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
   line-break: strict;
+  max-width: 100%;
 }
 
 .page-header__desc {
@@ -869,6 +885,23 @@ a:hover {
   border-left: 2px solid var(--color-accent);
   color: var(--color-muted);
   font-family: var(--font-serif);
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+}
+
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .article-meta {
