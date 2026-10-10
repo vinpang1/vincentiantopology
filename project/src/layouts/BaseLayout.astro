@@ -23,7 +23,8 @@ const {
   columnsHref,
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${site.name}` : site.name;
+const siteTitle = lang === 'en' ? site.nameEn : site.name;
+const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 ---
 
@@ -46,7 +47,9 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <title>{pageTitle}</title>
   </head>
   <body class:list={[articleReading && 'layout-article']}>
-    <a class="skip-link" href="#main">跳至主內容</a>
+    <a class="skip-link" href="#main">
+      {lang === 'en' ? 'Skip to main content' : '跳至主內容'}
+    </a>
     <SiteHeader readingContext={articleReading} columnsHref={columnsHref} />
     <main id="main" class="site-main">
       <div class={narrow ? 'container container--narrow' : 'container'}>

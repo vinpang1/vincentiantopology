@@ -5,7 +5,10 @@ import { sections } from '../../../site.config';
 import { navigationForTopics } from '../../../lib/content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('topics', ({ data }) => !data.draft);
+  const entries = await getCollection(
+    'topics',
+    ({ data }) => !data.draft && data.lang === 'zh-Hant',
+  );
   return entries.map((entry) => ({
     params: {
       series: entry.data.series,

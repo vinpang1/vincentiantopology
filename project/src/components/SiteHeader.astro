@@ -43,7 +43,7 @@ function isActive(href: string): boolean {
       data-nav-toggle
       aria-expanded="false"
       aria-controls="site-nav"
-      aria-label="開啟選單"
+      aria-label={isEn ? 'Open menu' : '開啟選單'}
     >
       <span class="nav-toggle__bars" aria-hidden="true"></span>
     </button>
@@ -52,7 +52,7 @@ function isActive(href: string): boolean {
       id="site-nav"
       class:list={['site-nav', readingContext && 'site-nav--reading']}
       data-site-nav
-      aria-label="主要導航"
+      aria-label={isEn ? 'Main navigation' : '主要導航'}
     >
       <ul class="site-nav__list">
         {

@@ -1,5 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+export type ContentLang = 'zh-Hant' | 'en';
+
 export type IntroEntry = CollectionEntry<'intro'>;
 export type ViewEntry = CollectionEntry<'view'>;
 export type TopicsEntry = CollectionEntry<'topics'>;
@@ -7,6 +9,10 @@ export type ClassicsEntry = CollectionEntry<'classics'>;
 
 export function slugFromId(id: string): string {
   return id.replace(/\.md$/, '').split('/').pop() ?? id;
+}
+
+function pathPrefix(lang: ContentLang): string {
+  return lang === 'en' ? '/en' : '';
 }
 
 export type ArticleNeighbor = {
@@ -40,15 +46,18 @@ export function navigationForIntro(
   current: IntroEntry,
   sectionHref: string,
   sectionLabel: string,
+  lang: ContentLang = 'zh-Hant',
 ): ArticleNavigationData {
+  const prefix = pathPrefix(lang);
   const sorted = [...entries]
-    .filter((e) => !e.data.draft)
+    .filter((e) => !e.data.draft && e.data.lang === lang)
     .sort((a, b) => a.data.order - b.data.order)
     .map((entry) => ({
-      href: `/intro/${slugFromId(entry.id)}`,
+      href: `${prefix}/intro/${slugFromId(entry.id)}`,
       title: entry.data.title,
     }));
-  const index = sorted.findIndex((item) => item.href === `/intro/${slugFromId(current.id)}`);
+  const currentHref = `${prefix}/intro/${slugFromId(current.id)}`;
+  const index = sorted.findIndex((item) => item.href === currentHref);
   return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
 }
 
@@ -57,17 +66,18 @@ export function navigationForView(
   current: ViewEntry,
   sectionHref: string,
   sectionLabel: string,
+  lang: ContentLang = 'zh-Hant',
 ): ArticleNavigationData {
+  const prefix = pathPrefix(lang);
   const sorted = [...entries]
-    .filter((e) => !e.data.draft)
+    .filter((e) => !e.data.draft && e.data.lang === lang)
     .sort((a, b) => a.data.published.getTime() - b.data.published.getTime())
     .map((entry) => ({
-      href: `/view/${slugFromId(entry.id)}`,
+      href: `${prefix}/view/${slugFromId(entry.id)}`,
       title: entry.data.title,
     }));
-  const index = sorted.findIndex(
-    (item) => item.href === `/view/${slugFromId(current.id)}`,
-  );
+  const currentHref = `${prefix}/view/${slugFromId(current.id)}`;
+  const index = sorted.findIndex((item) => item.href === currentHref);
   return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
 }
 
@@ -76,17 +86,18 @@ export function navigationForClassics(
   current: ClassicsEntry,
   sectionHref: string,
   sectionLabel: string,
+  lang: ContentLang = 'zh-Hant',
 ): ArticleNavigationData {
+  const prefix = pathPrefix(lang);
   const sorted = [...entries]
-    .filter((e) => !e.data.draft)
+    .filter((e) => !e.data.draft && e.data.lang === lang)
     .sort((a, b) => a.data.published.getTime() - b.data.published.getTime())
     .map((entry) => ({
-      href: `/classics/${slugFromId(entry.id)}`,
+      href: `${prefix}/classics/${slugFromId(entry.id)}`,
       title: entry.data.title,
     }));
-  const index = sorted.findIndex(
-    (item) => item.href === `/classics/${slugFromId(current.id)}`,
-  );
+  const currentHref = `${prefix}/classics/${slugFromId(current.id)}`;
+  const index = sorted.findIndex((item) => item.href === currentHref);
   return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
 }
 
@@ -95,24 +106,27 @@ export function navigationForTopics(
   current: TopicsEntry,
   sectionHref: string,
   sectionLabel: string,
+  lang: ContentLang = 'zh-Hant',
 ): ArticleNavigationData {
+  const prefix = pathPrefix(lang);
   const sorted = [...entries]
     .filter(
-      (e) => !e.data.draft && e.data.series === current.data.series,
+      (e) =>
+        !e.data.draft &&
+        e.data.lang === lang &&
+        e.data.series === current.data.series,
     )
     .sort((a, b) => a.data.episode - b.data.episode)
     .map((entry) => ({
-      href: `/topics/${entry.data.series}/${entry.data.episode}`,
+      href: `${prefix}/topics/${entry.data.series}/${entry.data.episode}`,
       title: entry.data.title,
     }));
-  const index = sorted.findIndex(
-    (item) =>
-      item.href === `/topics/${current.data.series}/${current.data.episode}`,
-  );
+  const currentHref = `${prefix}/topics/${current.data.series}/${current.data.episode}`;
+  const index = sorted.findIndex((item) => item.href === currentHref);
   return neighborsAtIndex(sorted, index, sectionHref, sectionLabel);
 }
 
-export function formatDate(date: Date, lang: 'zh-Hant' | 'en' = 'zh-Hant'): string {
+export function formatDate(date: Date, lang: ContentLang = 'zh-Hant'): string {
   return date.toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-Hant-TW', {
     year: 'numeric',
     month: 'long',
@@ -120,21 +134,27 @@ export function formatDate(date: Date, lang: 'zh-Hant' | 'en' = 'zh-Hant'): stri
   });
 }
 
-export async function getPublishedIntro(): Promise<IntroEntry[]> {
+export async function getPublishedIntro(
+  lang: ContentLang = 'zh-Hant',
+): Promise<IntroEntry[]> {
   return (await getCollection('intro'))
-    .filter((entry) => !entry.data.draft)
+    .filter((entry) => !entry.data.draft && entry.data.lang === lang)
     .sort((a, b) => a.data.order - b.data.order);
 }
 
-export async function getPublishedView(): Promise<ViewEntry[]> {
+export async function getPublishedView(
+  lang: ContentLang = 'zh-Hant',
+): Promise<ViewEntry[]> {
   return (await getCollection('view'))
-    .filter((entry) => !entry.data.draft)
+    .filter((entry) => !entry.data.draft && entry.data.lang === lang)
     .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 }
 
-export async function getPublishedClassics(): Promise<ClassicsEntry[]> {
+export async function getPublishedClassics(
+  lang: ContentLang = 'zh-Hant',
+): Promise<ClassicsEntry[]> {
   return (await getCollection('classics'))
-    .filter((entry) => !entry.data.draft)
+    .filter((entry) => !entry.data.draft && entry.data.lang === lang)
     .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 }
 
@@ -144,12 +164,15 @@ export type TopicSeries = {
   entries: TopicsEntry[];
 };
 
-export async function getTopicSeries(): Promise<TopicSeries[]> {
+export async function getTopicSeries(
+  lang: ContentLang = 'zh-Hant',
+): Promise<TopicSeries[]> {
+  const locale = lang === 'en' ? 'en' : 'zh-Hant';
   const entries = (await getCollection('topics'))
-    .filter((entry) => !entry.data.draft)
+    .filter((entry) => !entry.data.draft && entry.data.lang === lang)
     .sort((a, b) => {
       if (a.data.series !== b.data.series) {
-        return a.data.seriesTitle.localeCompare(b.data.seriesTitle, 'zh-Hant');
+        return a.data.seriesTitle.localeCompare(b.data.seriesTitle, locale);
       }
       return a.data.episode - b.data.episode;
     });
@@ -172,17 +195,21 @@ export async function getTopicSeries(): Promise<TopicSeries[]> {
   return [...map.values()];
 }
 
-export async function getLatestArticles(limit = 3) {
+export async function getLatestArticles(
+  limit = 3,
+  lang: ContentLang = 'zh-Hant',
+) {
+  const prefix = pathPrefix(lang);
   const [view, classics, topics] = await Promise.all([
-    getPublishedView(),
-    getPublishedClassics(),
+    getPublishedView(lang),
+    getPublishedClassics(lang),
     getCollection('topics'),
   ]);
 
   const topicItems = topics
-    .filter((e) => !e.data.draft)
+    .filter((e) => !e.data.draft && e.data.lang === lang)
     .map((entry) => ({
-      href: `/topics/${entry.data.series}/${entry.data.episode}`,
+      href: `${prefix}/topics/${entry.data.series}/${entry.data.episode}`,
       title: entry.data.title,
       description: entry.data.description,
       section: 'topics' as const,
@@ -190,7 +217,7 @@ export async function getLatestArticles(limit = 3) {
     }));
 
   const viewItems = view.map((entry) => ({
-    href: `/view/${slugFromId(entry.id)}`,
+    href: `${prefix}/view/${slugFromId(entry.id)}`,
     title: entry.data.title,
     description: entry.data.description,
     section: 'view' as const,
@@ -198,7 +225,7 @@ export async function getLatestArticles(limit = 3) {
   }));
 
   const classicItems = classics.map((entry) => ({
-    href: `/classics/${slugFromId(entry.id)}`,
+    href: `${prefix}/classics/${slugFromId(entry.id)}`,
     title: entry.data.title,
     description: entry.data.description,
     section: 'classics' as const,

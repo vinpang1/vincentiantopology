@@ -1,24 +1,46 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { sections } from '../../../site.config';
+import {
+  getPublishedClassics,
+  formatDate,
+  slugFromId,
+} from '../../../lib/content';
+
+const articles = await getPublishedClassics('en');
 ---
 
-<BaseLayout lang="en" title="Classic Commentary" narrow>
+<BaseLayout lang="en" title={sections.classics.labelEn}>
   <header class="page-header">
-    <p class="page-header__eyebrow">English</p>
-    <h1 class="page-header__title">Classic Commentary</h1>
-    <p class="page-header__desc">
-      English editions will live here. (Coming soon)
-    </p>
+    <p class="page-header__eyebrow">{sections.classics.labelEn}</p>
+    <h1 class="page-header__title">{sections.classics.labelEn}</h1>
+    <p class="page-header__desc">Slow reads on texts worth returning to.</p>
   </header>
 
-  <div class="prose">
-    <p>
-      This is a simple, one-way reading site. When you’re ready, we’ll replace
-      this placeholder with English classic notes.
-    </p>
-    <p>
-      <a class="btn" href="/classics">返回中文經典註解</a>
-    </p>
-  </div>
+  {
+    articles.length === 0 ? (
+      <p class="placeholder-note">
+        English classic commentary will be listed here.
+      </p>
+    ) : (
+      <ul class="article-list">
+        {articles.map((entry) => (
+          <li class="article-list__item">
+            <a
+              class="article-list__link"
+              href={`/en/classics/${slugFromId(entry.id)}`}
+            >
+              <span class="article-list__meta">
+                {formatDate(entry.data.published, 'en')}
+              </span>
+              <h2 class="article-list__title">{entry.data.title}</h2>
+              {entry.data.description && (
+                <p class="card__desc">{entry.data.description}</p>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </BaseLayout>
-

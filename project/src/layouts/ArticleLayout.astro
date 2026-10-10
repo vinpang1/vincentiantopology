@@ -33,7 +33,7 @@ const {
   <article class="article-reading">
     {
       navigation && (
-        <ArticleNavigation placement="top" {...navigation} />
+        <ArticleNavigation placement="top" lang={lang} {...navigation} />
       )
     }
     <header class="page-header">
@@ -48,7 +48,7 @@ const {
     </div>
     {
       navigation && (
-        <ArticleNavigation placement="bottom" {...navigation} />
+        <ArticleNavigation placement="bottom" lang={lang} {...navigation} />
       )
     }
   </article>
