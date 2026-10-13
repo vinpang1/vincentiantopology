@@ -8,7 +8,7 @@ draft: false
 
 萬脈同構｜文森思維<br>
 作者：文森<br>
-本文文句由人工智能協助修飾。
+本文文句由人工智能協助修飾
 
 星期一，朋友丟來一條連結。新模型，新名字，說這次不一樣。我回了個「喔」，繼續洗碗。
 
@@ -76,3 +76,8 @@ draft: false
 
 亞當·斯密《國富論》<br>
 威廉·詹姆斯《心理學原理》第四章〈習慣〉
+
+---
+
+Vincent 文森｜萬脈同構・文森思維
+[vincentiantopology.com](https://vincentiantopology.com)・訂閱：[Substack](https://vincentiantopology.substack.com)
