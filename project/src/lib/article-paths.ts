@@ -70,6 +70,14 @@ const INTRO_EN_TO_ZH: Record<string, string> = {
   '0-4-en': '0-4',
 };
 
+const VIEW_ZH_TO_EN: Record<string, string> = {
+  'dream-fill-stories': 'dream-fill-stories-en',
+};
+
+const VIEW_EN_TO_ZH: Record<string, string> = {
+  'dream-fill-stories-en': 'dream-fill-stories',
+};
+
 export type HreflangAlternate = {
   lang: 'zh-Hant' | 'en';
   url: string;
@@ -100,6 +108,34 @@ export function topicHreflangAlternates(
     {
       lang: 'en',
       url: absoluteUrl(`/en/topics/${enSeries}/${episode}`),
+    },
+  ];
+}
+
+export function viewHreflangAlternates(
+  slug: string,
+): HreflangAlternate[] | undefined {
+  let zhSlug: string | undefined;
+  let enSlug: string | undefined;
+
+  if (slug in VIEW_ZH_TO_EN) {
+    zhSlug = slug;
+    enSlug = VIEW_ZH_TO_EN[slug];
+  } else if (slug in VIEW_EN_TO_ZH) {
+    enSlug = slug;
+    zhSlug = VIEW_EN_TO_ZH[slug];
+  }
+
+  if (!zhSlug || !enSlug) return undefined;
+
+  return [
+    {
+      lang: 'zh-Hant',
+      url: absoluteUrl(`/view/${zhSlug}`),
+    },
+    {
+      lang: 'en',
+      url: absoluteUrl(`/en/view/${enSlug}`),
     },
   ];
 }

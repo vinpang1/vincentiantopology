@@ -6,6 +6,7 @@ import {
   navigationForView,
   slugFromId,
 } from '../../lib/content';
+import { viewHreflangAlternates } from '../../lib/article-paths';
 
 export async function getStaticPaths() {
   const entries = await getCollection(
@@ -37,6 +38,7 @@ const { Content } = await render(entry);
   published={entry.data.published}
   lang={entry.data.lang}
   navigation={navigation}
+  hreflangAlternates={viewHreflangAlternates(slugFromId(entry.id))}
 >
   <Content />
 </ArticleLayout>
