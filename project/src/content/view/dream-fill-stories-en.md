@@ -12,11 +12,11 @@ The wording of this essay was refined with the help of AI
 
 Have you ever woken up with only a few fragments of a dream left?
 
-A house you don't recognise. Someone you haven't seen in years. A door that won't open no matter what you do. You can't remember what came first, yet the moment you tell someone about it, it becomes a story with a beginning and an end.
+A house you don't recognize. Someone you haven't seen in years. A door that won't open no matter what you do. You can't remember what came first, yet the moment you tell someone about it, it becomes a story with a beginning and an end.
 
 You are not lying. Your mind simply cannot bear a pile of unconnected pieces.
 
-## 1. The Dream Patches Its Own Holes
+## 1. The Dream Patches Its Own Gaps
 
 Freud wrote about a detail few people notice. Once a dream is made, there is one last step: the scattered fragments are stitched together so the whole thing seems to make sense.
 
@@ -34,7 +34,7 @@ Last week there was a headline: "Energy ceasefire takes effect immediately."
 
 That same week, the other side said its energy facilities were still under attack, and Russia gave no public confirmation. Then came word of a deal to buy diesel, and senators from both parties signed a letter opposing it.
 
-I no longer want to argue about who is right. I just recognise a very familiar move: several contradictory reports, stitched into one storyline by a single sentence.
+I no longer want to argue about who is right. I just recognize a very familiar move: several contradictory reports, stitched into one storyline by a single sentence.
 
 "Takes effect immediately" works like "it's only a dream" in the dream. It may not be false. But once you hear it, whatever is still happening seems to matter a little less. Just as a person who wakes joins the scattered pieces of a dream into one complete story, the parts that don't fit are quietly smoothed away.
 
