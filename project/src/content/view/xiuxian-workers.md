@@ -1,7 +1,7 @@
 ---
 title: "從修仙小說看現代打工人"
 description: "宗門像公司，散修像自由接案；我們以為在看神仙打架，其實書裡寫的全是打工人的算盤。"
-published: 2026-10-18
+published: 2026-10-21
 lang: zh-Hant
 draft: true
 ---
