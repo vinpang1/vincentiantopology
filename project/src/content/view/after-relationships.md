@@ -1,9 +1,9 @@
 ---
 title: "幾段感情都沒結果之後"
 description: "幾段感情都沒結果，是不是自己哪裡出了問題？從《撒母耳記上》亞比該的故事，看清別人的局限，也看見自己的見識。"
-published: 2026-10-25
+published: 2026-10-17
 lang: zh-Hant
-draft: true
+draft: false
 ---
 
 萬脈同構｜文森思維<br>
