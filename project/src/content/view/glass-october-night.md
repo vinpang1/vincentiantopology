@@ -3,7 +3,7 @@ title: "當玻璃碎在十月的夜街上"
 description: "法國十月街頭抗議由委屈走向失序，借勒龐《烏合之眾》看群眾鬧完之後，為何轉頭擁抱秩序。"
 published: 2026-10-19
 lang: zh-Hant
-draft: true
+draft: false
 ---
 
 萬脈同構｜文森思維<br>
