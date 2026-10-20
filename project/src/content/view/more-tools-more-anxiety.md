@@ -3,7 +3,7 @@ title: "工具越來越多，心卻越來越慌"
 description: "辦公室裡的智能工具越來越多，打工人在組織庇護下反而更擔心自己隨時被取代。"
 published: 2026-10-21
 lang: zh-Hant
-draft: true
+draft: false
 ---
 
 萬脈同構｜文森思維<br>
