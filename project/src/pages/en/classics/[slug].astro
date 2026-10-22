@@ -6,6 +6,10 @@ import {
   navigationForClassics,
   slugFromId,
 } from '../../../lib/content';
+import {
+  getArticleStructuredMeta,
+  getRelatedArticlesForContentId,
+} from '../../../lib/articles-index';
 
 export async function getStaticPaths() {
   const sectionHref = `/en${sections.classics.href}`;
@@ -30,6 +34,9 @@ export async function getStaticPaths() {
 
 const { entry, navigation } = Astro.props;
 const { Content } = await render(entry);
+const contentId = slugFromId(entry.id);
+const relatedArticles = getRelatedArticlesForContentId(contentId);
+const structuredMeta = getArticleStructuredMeta(contentId);
 ---
 
 <ArticleLayout
@@ -39,6 +46,8 @@ const { Content } = await render(entry);
   published={entry.data.published}
   lang="en"
   navigation={navigation}
+  relatedArticles={relatedArticles}
+  structuredMeta={structuredMeta}
 >
   <Content />
 </ArticleLayout>

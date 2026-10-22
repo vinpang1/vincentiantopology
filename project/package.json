@@ -6,8 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "npm run sync:articles-csv && astro dev",
+    "sync:articles-csv": "node scripts/sync-articles-csv.mjs",
+    "build": "npm run sync:articles-csv && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
