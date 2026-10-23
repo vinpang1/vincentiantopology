@@ -7,6 +7,10 @@ import {
   slugFromId,
 } from '../../lib/content';
 import { viewHreflangAlternates } from '../../lib/article-paths';
+import {
+  getArticleStructuredMeta,
+  getRelatedArticlesForContentId,
+} from '../../lib/articles-index';
 
 export async function getStaticPaths() {
   const entries = await getCollection(
@@ -29,6 +33,9 @@ export async function getStaticPaths() {
 
 const { entry, navigation } = Astro.props;
 const { Content } = await render(entry);
+const contentId = slugFromId(entry.id);
+const relatedArticles = getRelatedArticlesForContentId(contentId);
+const structuredMeta = getArticleStructuredMeta(contentId);
 ---
 
 <ArticleLayout
@@ -39,6 +46,8 @@ const { Content } = await render(entry);
   lang={entry.data.lang}
   navigation={navigation}
   hreflangAlternates={viewHreflangAlternates(slugFromId(entry.id))}
+  relatedArticles={relatedArticles}
+  structuredMeta={structuredMeta}
 >
   <Content />
 </ArticleLayout>

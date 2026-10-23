@@ -830,9 +830,22 @@ a:hover {
   margin-top: 0;
 }
 
-.prose + .article-list {
+.prose + .article-list,
+.prose + .related-articles {
   margin-top: var(--space-2xl);
   max-width: var(--measure);
+}
+
+.related-articles__heading {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+}
+
+.related-articles__list {
+  margin-top: 0;
 }
 
 .page-header + .article-list {

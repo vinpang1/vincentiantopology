@@ -4,6 +4,11 @@ import ArticleLayout from '../../../../layouts/ArticleLayout.astro';
 import { sections } from '../../../../site.config';
 import { navigationForTopics } from '../../../../lib/content';
 import { topicHreflangAlternates } from '../../../../lib/article-paths';
+import {
+  getArticleStructuredMeta,
+  getRelatedArticlesForContentId,
+  topicsContentId,
+} from '../../../../lib/articles-index';
 
 export async function getStaticPaths() {
   const sectionHref = `/en${sections.topics.href}`;
@@ -31,6 +36,9 @@ export async function getStaticPaths() {
 
 const { entry, navigation } = Astro.props;
 const { Content } = await render(entry);
+const contentId = topicsContentId(entry.data.series, entry.data.episode);
+const relatedArticles = getRelatedArticlesForContentId(contentId);
+const structuredMeta = getArticleStructuredMeta(contentId);
 ---
 
 <ArticleLayout
@@ -44,6 +52,8 @@ const { Content } = await render(entry);
     entry.data.series,
     entry.data.episode,
   )}
+  relatedArticles={relatedArticles}
+  structuredMeta={structuredMeta}
 >
   <Content />
 </ArticleLayout>

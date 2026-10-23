@@ -1,0 +1,35 @@
+---
+import type { ContentLang } from '../lib/content';
+import type { RelatedArticleItem } from '../lib/articles-index';
+
+interface Props {
+  items: RelatedArticleItem[];
+  lang?: ContentLang;
+}
+
+const { items, lang = 'zh-Hant' } = Astro.props;
+const isEn = lang === 'en';
+const heading = isEn ? 'Related articles' : '相關文章';
+---
+
+{
+  items.length > 0 && (
+    <section class="related-articles" aria-labelledby="related-articles-heading">
+      <h2 id="related-articles-heading" class="related-articles__heading">
+        {heading}
+      </h2>
+      <ul class="article-list related-articles__list">
+        {items.map((item) => (
+          <li class="article-list__item">
+            <a class="article-list__link" href={item.url}>
+              <span class="article-list__title">{item.title}</span>
+              {item.description ? (
+                <p class="card__desc">{item.description}</p>
+              ) : null}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
