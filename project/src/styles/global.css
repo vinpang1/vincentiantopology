@@ -542,10 +542,24 @@ a:hover {
   margin-top: var(--space-sm);
 }
 
+.article-topics {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  max-width: var(--measure);
+}
+
+.article-topics__label {
+  opacity: 0.92;
+}
+
 .article-follow {
   margin-top: var(--space-xl);
   margin-bottom: var(--space-lg);
   max-width: var(--measure);
+}
+
+.article-topics + .article-follow {
+  margin-top: var(--space-md);
 }
 
 /* —— Hero · one claim —— */

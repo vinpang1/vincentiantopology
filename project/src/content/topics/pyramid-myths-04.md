@@ -7,6 +7,11 @@ episode: 4
 published: 2026-10-10
 lang: zh-Hant
 draft: false
+topics:
+  - 金字塔陰謀
+  - 假新聞
+  - 考古證據
+  - 查證真相
 ---
 
 萬脈同構｜文森思維<br>

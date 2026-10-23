@@ -7,6 +7,11 @@ episode: 1
 published: 2026-10-10
 lang: zh-Hant
 draft: false
+topics:
+  - 金字塔
+  - 埃及考古
+  - 吉薩
+  - 建造方法
 ---
 
 萬脈同構｜文森思維<br>

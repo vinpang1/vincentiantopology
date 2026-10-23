@@ -7,6 +7,11 @@ episode: 1
 published: 2026-10-10
 lang: en
 draft: false
+topics:
+  - pyramids
+  - Egyptian archaeology
+  - Giza
+  - how pyramids built
 ---
 
 All Things Are One｜Vincentian Topology<br>

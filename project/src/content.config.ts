@@ -9,6 +9,7 @@ const baseArticle = {
   /** Internal trace to Spin Map uuid — never shown in reader-facing body */
   spin_map_source: z.string().optional(),
   draft: z.boolean().default(false),
+  topics: z.array(z.string()).min(3).max(5).optional(),
 };
 
 const intro = defineCollection({

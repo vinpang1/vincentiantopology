@@ -7,6 +7,11 @@ episode: 3
 published: 2026-10-10
 lang: zh-Hant
 draft: false
+topics:
+  - 金字塔外星人
+  - 埃及工程
+  - 考古證據
+  - 陰謀論
 ---
 
 萬脈同構｜文森思維<br>

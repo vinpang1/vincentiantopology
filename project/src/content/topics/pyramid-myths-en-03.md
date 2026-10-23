@@ -7,6 +7,11 @@ episode: 3
 published: 2026-10-10
 lang: en
 draft: false
+topics:
+  - aliens built pyramids
+  - Egyptian engineering
+  - pyramid myths
+  - archaeology facts
 ---
 
 All Things Are One｜Vincentian Topology<br>
