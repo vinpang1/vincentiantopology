@@ -8,6 +8,12 @@ export const site = {
   url: 'https://www.vincentiantopology.com',
   subscribeUrl: 'https://vincentiantopology.substack.com',
   subscribeLabel: '訂閱',
+  threadsUrl: 'https://www.threads.com/@vincentiant_notes',
+  threadsHandle: '@vincentiant_notes',
+  threadsFollowPrefixZh: '追蹤 Threads｜',
+  threadsFollowPrefixEn: 'Follow on Threads｜',
+  threadsLabelZh: 'Threads',
+  threadsLabelEn: 'Threads',
   logo: '/logo.png',
   logoAlt: 'Vincentian Topology · 萬脈同構｜文森思維',
 } as const;

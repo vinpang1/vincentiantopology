@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ThreadsFollowSoft from '../components/ThreadsFollowSoft.astro';
 import { site, sections } from '../site.config';
 import {
   getPublishedIntro,
@@ -107,6 +108,7 @@ const sectionNav = [
         訂閱電子報
       </a>
     </div>
+    <ThreadsFollowSoft class="soft-follow hero__soft" />
   </section>
 
   {

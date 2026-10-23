@@ -1,0 +1,21 @@
+---
+import { site } from '../site.config';
+
+interface Props {
+  lang?: 'zh-Hant' | 'en';
+  class?: string;
+}
+
+const { lang = 'zh-Hant', class: className = 'soft-follow' } = Astro.props;
+
+const isEn = lang === 'en';
+const prefix = isEn ? site.threadsFollowPrefixEn : site.threadsFollowPrefixZh;
+---
+
+<p class={className}>
+  {prefix}<a
+    href={site.threadsUrl}
+    target="_blank"
+    rel="noopener noreferrer">{site.threadsHandle}</a
+  >
+</p>

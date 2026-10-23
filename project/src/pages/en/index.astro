@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThreadsFollowSoft from '../../components/ThreadsFollowSoft.astro';
 import { site, sections } from '../../site.config';
 import {
   getPublishedIntro,
@@ -37,6 +38,19 @@ const latest = primaryFeatured
   ? latestPool.slice(1, 5)
   : latestPool.slice(0, 4);
 
+const readHref =
+  introArticles.length > 0
+    ? `/en/intro/${slugFromId(introArticles[0].id)}`
+    : `/en${sections.intro.href}`;
+
+const heroTaglineLines = [
+  'Reading isn’t about right or wrong;',
+  'it’s about seeing how thought pulls between two poles.',
+];
+
+const heroDek =
+  'For readers navigating uncertainty—see the tension between poles, not quick judgments of right and wrong.';
+
 const sectionLabelEn: Record<
   'view' | 'topics' | 'classics' | 'intro',
   string
@@ -73,6 +87,32 @@ const sectionNav = [
 
 <BaseLayout lang="en" title="Home">
   <h1 class="visually-hidden">{site.nameEn}</h1>
+
+  <section class="hero" aria-labelledby="hero-claim-en">
+    <p class="hero__kicker">This issue</p>
+    <p id="hero-claim-en" class="hero__claim">
+      {
+        heroTaglineLines.map((line) => (
+          <span class="hero__claim-line">{line}</span>
+        ))
+      }
+    </p>
+    <p class="hero__dek">{heroDek}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--pill" href={readHref}>
+        Start reading →
+      </a>
+      <a
+        class="btn btn--ghost"
+        href={site.subscribeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Subscribe
+      </a>
+    </div>
+    <ThreadsFollowSoft lang="en" class="soft-follow hero__soft" />
+  </section>
 
   {
     featured && (
