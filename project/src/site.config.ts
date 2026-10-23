@@ -4,7 +4,7 @@ export const site = {
   tagline:
     '閱讀不是為了判斷對錯；而是為了看見：思維在兩極之間的拉扯',
   description:
-    '用拓撲思維比較不同觀點、找出底層同構，再把想法連起來的思想通訊。',
+    '用拓撲思維做思維訓練的思想通訊：比較不同觀點、找出底層同構，再把想法連起來。',
   url: 'https://www.vincentiantopology.com',
   subscribeUrl: 'https://vincentiantopology.substack.com',
   subscribeLabel: '訂閱',
