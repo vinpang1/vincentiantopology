@@ -1,9 +1,36 @@
 ---
 import { site } from '../site.config';
+
+interface Props {
+  lang?: 'zh-Hant' | 'en';
+}
+
+const { lang = 'zh-Hant' } = Astro.props;
+const isEn = lang === 'en';
+const threadsLabel = isEn ? site.threadsLabelEn : site.threadsLabelZh;
+const subscribeLabel = isEn ? 'Subscribe' : site.subscribeLabel;
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <p>© {new Date().getFullYear()} {site.name}</p>
+    <p>© {new Date().getFullYear()} {isEn ? site.nameEn : site.name}</p>
+    <nav class="site-footer__links" aria-label={isEn ? 'Footer links' : '頁腳連結'}>
+      {
+        site.subscribeUrl && (
+          <a
+            class="site-footer__link"
+            href={site.subscribeUrl}
+            target="_blank"
+            rel="noopener noreferrer">{subscribeLabel}</a
+          >
+        )
+      }
+      <a
+        class="site-footer__link"
+        href={site.threadsUrl}
+        target="_blank"
+        rel="noopener noreferrer">{threadsLabel}</a
+      >
+    </nav>
   </div>
 </footer>

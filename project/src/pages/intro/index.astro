@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThreadsFollowSoft from '../../components/ThreadsFollowSoft.astro';
 import { sections } from '../../site.config';
 import {
   getPublishedIntro,
@@ -15,6 +16,7 @@ const articles = await getPublishedIntro();
     <p class="page-header__eyebrow">{sections.intro.labelEn}</p>
     <h1 class="page-header__title">{sections.intro.labelZh}</h1>
     <p class="page-header__desc">歡迎來到這間公開書房。</p>
+    <ThreadsFollowSoft class="soft-follow page-header__soft" />
   </header>
 
   <div class="prose">

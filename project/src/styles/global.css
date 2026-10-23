@@ -488,12 +488,64 @@ a:hover {
   gap: var(--space-md);
 }
 
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md) var(--space-lg);
+}
+
+.site-footer__link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.site-footer__link:hover {
+  color: var(--color-text);
+}
+
 @media (min-width: 768px) {
   .site-footer__inner {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
+}
+
+/* —— Quiet follow / outbound soft lines —— */
+
+.soft-follow {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  opacity: 0.88;
+}
+
+.soft-follow a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.soft-follow a:hover {
+  color: var(--color-text);
+  opacity: 1;
+}
+
+.hero__soft {
+  margin-top: var(--space-md);
+}
+
+.page-header__soft {
+  margin-top: var(--space-sm);
+}
+
+.article-follow {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  max-width: var(--measure);
 }
 
 /* —— Hero · one claim —— */
