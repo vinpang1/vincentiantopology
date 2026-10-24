@@ -7,6 +7,11 @@ episode: 4
 published: 2026-10-10
 lang: en
 draft: false
+topics:
+  - pyramid conspiracy
+  - fake news
+  - archaeological evidence
+  - fact checking
 ---
 
 All Things Are One｜Vincentian Topology<br>

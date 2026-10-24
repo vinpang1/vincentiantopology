@@ -7,6 +7,11 @@ episode: 2
 published: 2026-10-10
 lang: en
 draft: false
+topics:
+  - pyramid dating
+  - ancient Egypt
+  - prehistoric China
+  - civilization timeline
 ---
 
 All Things Are One｜Vincentian Topology<br>

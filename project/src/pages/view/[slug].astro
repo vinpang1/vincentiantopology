@@ -39,6 +39,7 @@ const { Content } = await render(entry);
   lang={entry.data.lang}
   navigation={navigation}
   hreflangAlternates={viewHreflangAlternates(slugFromId(entry.id))}
+  topics={entry.data.topics}
 >
   <Content />
 </ArticleLayout>

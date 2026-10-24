@@ -4,6 +4,11 @@ description: "真正震撼的句子，是把你腦中那張默認地圖抽走。
 published: 2026-10-10
 lang: zh-Hant
 draft: false
+topics:
+  - 讀書方法
+  - 好句子
+  - 文學閱讀
+  - 拓撲思維
 ---
 
 萬脈同構｜文森思維<br>

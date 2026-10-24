@@ -1,0 +1,18 @@
+---
+interface Props {
+  topics: string[];
+  lang?: 'zh-Hant' | 'en';
+  class?: string;
+}
+
+const { topics, lang = 'zh-Hant', class: className = 'soft-follow article-topics' } =
+  Astro.props;
+
+const label = lang === 'en' ? 'Topics' : '主題';
+const joined = topics.join(' · ');
+---
+
+<p class={className}>
+  <span class="article-topics__label">{label}</span>{' '}
+  <span class="article-topics__words">{joined}</span>
+</p>

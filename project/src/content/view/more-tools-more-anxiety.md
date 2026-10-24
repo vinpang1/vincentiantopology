@@ -4,6 +4,11 @@ description: "辦公室裡的智能工具越來越多，打工人在組織庇護
 published: 2026-10-21
 lang: zh-Hant
 draft: false
+topics:
+  - AI 焦慮
+  - 打工人
+  - 職場危機
+  - 被取代
 ---
 
 萬脈同構｜文森思維<br>

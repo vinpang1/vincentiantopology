@@ -4,6 +4,11 @@ description: "模型不斷升級，你心裡那句，它還沒有幫你寫出來
 published: 2026-10-11
 lang: zh-Hant
 draft: false
+topics:
+  - 學 AI
+  - 新模型
+  - 工具焦慮
+  - 日常效率
 ---
 
 萬脈同構｜文森思維<br>

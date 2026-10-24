@@ -4,6 +4,11 @@ description: "熱鬧散去之後，從高處走回平凡，在動盪時代裡守
 published: 2026-10-23
 lang: zh-Hant
 draft: false
+topics:
+  - 四十歲
+  - 中年轉折
+  - 職場壓力
+  - 人生方向
 ---
 
 萬脈同構｜文森思維<br>

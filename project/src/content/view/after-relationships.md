@@ -4,6 +4,11 @@ description: "幾段感情都沒結果，是不是自己哪裡出了問題？從
 published: 2026-10-17
 lang: zh-Hant
 draft: false
+topics:
+  - 感情問題
+  - 分手
+  - 自我懷疑
+  - 親密關係
 ---
 
 萬脈同構｜文森思維<br>

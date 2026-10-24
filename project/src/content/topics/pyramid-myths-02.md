@@ -7,6 +7,11 @@ episode: 2
 published: 2026-10-10
 lang: zh-Hant
 draft: false
+topics:
+  - 金字塔年代
+  - 古埃及
+  - 中國史前
+  - 文明比較
 ---
 
 萬脈同構｜文森思維<br>

@@ -4,6 +4,11 @@ description: "法國十月街頭抗議由委屈走向失序，借勒龐《烏合
 published: 2026-10-19
 lang: zh-Hant
 draft: false
+topics:
+  - 法國示威
+  - 巴黎抗議
+  - 群眾暴動
+  - 社會秩序
 ---
 
 萬脈同構｜文森思維<br>
