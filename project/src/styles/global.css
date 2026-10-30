@@ -941,6 +941,13 @@ a:hover {
   margin-block: var(--space-md);
 }
 
+.prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block: var(--space-xl);
+}
+
 .prose li + li {
   margin-top: var(--space-xs);
 }
